@@ -1,0 +1,715 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Konsep Thyristor</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500;600&display=swap">
+<style>
+/* Layout: dashboard satu kolom 1080px — header, hero "Konsep Thyristor", tiga sifat, simulator DC/AC, simulator sudut penyalaan,
+   syarat & cara mematikan, bukti lab, penggunaan, kredit. Palet netral hangat (stone) + satu aksen oranye-bata dengan tint-nya (warna "nyala"). Satu tema terang. */
+:root{
+  color-scheme: light;
+  --bg:#f5f5f4; --surface:#ffffff; --subtle:#fafaf9; --line:#e7e5e4; --ink:#1c1917; --muted:#57534e; --faint:#a8a29e;
+  --accent:#c2410c; --accent-soft:#fff7ed; --accent-line:#fed7aa; --accent-mid:#fdba74;
+  --f-display:"Geist","Segoe UI",system-ui,sans-serif; --f-body:"Geist","Segoe UI",system-ui,sans-serif; --f-mono:"Geist Mono",ui-monospace,Consolas,monospace;
+  --r:12px;
+}
+.i-en{display:none}
+:root[data-lang="en"] .i-id{display:none}
+:root[data-lang="en"] .i-en{display:inline}
+*{box-sizing:border-box}
+html{background:var(--bg)}
+body{margin:0;color:var(--ink);font-family:var(--f-body);font-size:16.5px;line-height:1.6;background:var(--bg);
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:0 40px;overflow-x:hidden}
+main{max-width:1080px;margin:0 auto;display:flex;flex-direction:column;gap:20px}
+h1,h2,h3{font-family:var(--f-display);margin:0;line-height:1.15;text-wrap:balance;letter-spacing:-.015em}
+h1{font-size:clamp(2.2rem,5.4vw,3.5rem);font-weight:700}
+h2{font-size:clamp(1.45rem,3vw,1.95rem);font-weight:600}
+h3{font-size:1.05rem;font-weight:600}
+p{margin:0;max-width:64ch}
+.glass{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);box-shadow:0 1px 2px rgba(28,25,23,.04)}
+.sec{padding:clamp(20px,3.6vw,34px);display:flex;flex-direction:column;gap:16px}
+.kicker{font-family:var(--f-mono);font-size:.74rem;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.lead{font-size:1.06rem;color:var(--muted)}
+.topbar{max-width:1080px;margin:16px auto 20px;display:flex;align-items:center;justify-content:space-between;gap:12px;padding:10px 14px}
+.brand{font-weight:600;font-size:.95rem;display:flex;align-items:center;gap:10px;min-width:0}
+.brand span{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.pill{display:inline-flex;flex-wrap:wrap;border-radius:9px;background:var(--subtle);border:1px solid var(--line);padding:3px;gap:2px}
+.pill button{font:500 .86rem var(--f-body);border:0;background:transparent;color:var(--muted);padding:6px 12px;border-radius:7px;cursor:pointer}
+.pill button[aria-pressed="true"]{background:var(--surface);color:var(--ink);box-shadow:0 1px 2px rgba(28,25,23,.12)}
+button:focus-visible,a:focus-visible,input:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.hero{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,.8fr);gap:28px;align-items:center;padding:clamp(22px,4.4vw,48px)}
+@media (max-width:820px){.hero{grid-template-columns:minmax(0,1fr)}}
+.hero .tagline{font-size:clamp(1.15rem,2.2vw,1.4rem);font-weight:500;color:var(--ink)}
+.hero .tagline b{color:var(--accent);font-weight:600}
+.cta{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+.btn{font:600 .95rem var(--f-body);border-radius:9px;padding:10px 18px;cursor:pointer;border:1px solid var(--line);background:var(--surface);color:var(--ink);text-decoration:none;display:inline-flex;align-items:center;gap:8px}
+.btn:hover{border-color:var(--faint)}
+.btn.dark{background:var(--ink);color:#fff;border-color:var(--ink)}
+.byline{font-size:.9rem;color:var(--muted)}
+.byline b{color:var(--ink)}
+.three{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+@media (max-width:820px){.three{grid-template-columns:minmax(0,1fr)}}
+.card{padding:20px;display:flex;flex-direction:column;gap:10px;border-radius:10px;background:var(--surface);border:1px solid var(--line)}
+.ico,.ico.amber,.ico.red{width:40px;height:40px;border-radius:10px;display:grid;place-items:center;background:var(--accent-soft);color:var(--accent);border:1px solid var(--accent-line)}
+.ico svg{width:22px;height:22px}
+.two{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px}
+@media (max-width:820px){.two{grid-template-columns:minmax(0,1fr)}}
+.step{display:flex;gap:14px;align-items:flex-start}
+.step .n{flex:none;min-width:34px;height:34px;padding:0 6px;border-radius:9px;display:grid;place-items:center;font:600 .85rem var(--f-mono);background:var(--subtle);color:var(--ink);border:1px solid var(--line)}
+.sim{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,.8fr);gap:20px;align-items:start}
+@media (max-width:860px){.sim{grid-template-columns:minmax(0,1fr)}}
+.stage{border-radius:10px;background:var(--surface);border:1px solid var(--line);padding:10px}
+.stage svg{width:100%;height:auto;display:block}
+.controls{display:flex;flex-direction:column;gap:14px}
+.ctl-row{display:flex;flex-wrap:wrap;align-items:center;gap:10px}
+.ctl-row .lab{font-size:.86rem;font-weight:500;color:var(--muted);min-width:7.5em}
+.gatebtn{width:100%;font:600 1rem var(--f-body);padding:15px;border-radius:10px;border:1.5px solid var(--accent);background:var(--accent-soft);color:var(--accent);cursor:pointer;touch-action:none;user-select:none;-webkit-user-select:none;transition:transform .08s, background .15s}
+.gatebtn.held{background:var(--accent);color:#fff;transform:scale(.99)}
+.status{border-radius:10px;padding:14px 16px;background:var(--subtle);border:1px solid var(--line);display:grid}
+.status .msg{grid-area:1/1;visibility:hidden}
+.status .msg.on{visibility:visible}
+.gatebtn{display:grid}
+.gatebtn .gl{grid-area:1/1;visibility:hidden}
+.gatebtn .gl.on{visibility:visible}
+.mini{margin-top:auto;border-radius:10px;background:var(--subtle);border:1px solid var(--line);padding:8px}
+.mini svg{width:100%;height:auto;display:block}
+.status .big{font-weight:600;font-size:1.15rem}
+.missions{display:flex;flex-direction:column;gap:8px;margin:0;padding:0;list-style:none}
+.missions li{display:flex;gap:10px;align-items:center;font-size:.93rem}
+.missions .box{flex:none;width:20px;height:20px;border-radius:6px;border:1.5px solid var(--line);display:grid;place-items:center;background:#fff}
+.missions li.done .box{background:var(--accent);border-color:var(--accent)}
+.missions li.done .box::after{content:"";width:9px;height:5px;border-left:2.5px solid #fff;border-bottom:2.5px solid #fff;transform:rotate(-45deg) translate(1px,-1px)}
+.missions li.done{color:var(--muted)}
+.wave svg{width:100%;height:auto;display:block}
+.note{font-size:.85rem;color:var(--muted)}
+.wire{stroke:#292524;stroke-width:3;fill:none;stroke-linecap:round;stroke-linejoin:round}
+.flow{stroke:#c2410c;stroke-width:5;fill:none;stroke-linecap:round;stroke-dasharray:2 16;opacity:0}
+.flow.live{opacity:1;animation:flow .7s linear infinite}
+@keyframes flow{to{stroke-dashoffset:-18}}
+@media (prefers-reduced-motion: reduce){.flow.live{animation:none;stroke-dasharray:none;opacity:.6}}
+svg text{font-family:var(--f-body)}
+.facts{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+@media (max-width:820px){.facts{grid-template-columns:minmax(0,1fr)}}
+.fact{padding:18px;border-radius:10px;background:var(--surface);border:1px solid var(--line);display:flex;flex-direction:column;gap:6px}
+.fact .num{font-family:var(--f-mono);font-weight:600;font-size:1.8rem;color:var(--ink);font-variant-numeric:tabular-nums}
+.labgrid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:18px;align-items:center}
+@media (max-width:820px){.labgrid{grid-template-columns:minmax(0,1fr)}}
+.labgrid img{width:100%;height:auto;border-radius:10px;border:1px solid var(--line);display:block}
+.uses{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px}
+@media (max-width:900px){.uses{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:460px){.uses{grid-template-columns:minmax(0,1fr)}}
+/* sudut penyalaan */
+.kpis{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.kpi{padding:12px 14px;border-radius:10px;border:1px solid var(--line);background:var(--surface);display:flex;flex-direction:column;gap:2px;min-width:0}
+.kpi .v{font-family:var(--f-mono);font-size:1.5rem;font-weight:600;font-variant-numeric:tabular-nums}
+.kpi .v.acc{color:var(--accent)}
+.kpi .k{font-size:.8rem;color:var(--muted)}
+.meter{height:8px;border-radius:4px;background:var(--subtle);overflow:hidden;border:1px solid var(--line)}
+.meter i{display:block;height:100%;background:var(--accent);width:50%}
+input[type=range]{width:100%;accent-color:var(--accent)}
+.formula{font-family:var(--f-mono);font-size:.85rem;background:var(--subtle);border:1px solid var(--line);border-radius:8px;padding:8px 10px;overflow-x:auto;white-space:nowrap}
+.f-toolbar{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px 20px;align-items:center}
+.f-right{justify-content:flex-end}
+.f-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;align-items:stretch}
+.f-grid .stage{display:flex;align-items:center}
+.f-panel{display:grid;grid-template-rows:auto 1fr;gap:12px;min-width:0}
+.f-lamp{display:flex;align-items:center;gap:16px;padding:14px 16px;border:1px solid var(--line);border-radius:10px;background:var(--surface)}
+.f-lamp-txt{flex:1;min-width:0;display:flex;flex-direction:column;gap:6px}
+.f-big{font-family:var(--f-mono);font-size:2.1rem;font-weight:600;line-height:1;font-variant-numeric:tabular-nums}
+.kpis4{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));grid-auto-rows:1fr;gap:12px}
+.kpis4 .kpi{justify-content:center}
+.f-slider{display:flex;flex-direction:column;gap:8px;padding:14px 16px;border:1px solid var(--line);border-radius:10px;background:var(--subtle)}
+.numbox{display:inline-flex;align-items:center;gap:6px;font-family:var(--f-mono);font-weight:600}
+.numbox .btn{padding:4px 12px;border-radius:7px}
+.numbox input{width:4.2em;font:600 1rem var(--f-mono);text-align:right;padding:5px 6px;border:1px solid var(--line);border-radius:7px;background:var(--surface);color:var(--ink)}
+.ticks{position:relative;height:16px;margin:0 9px;font-family:var(--f-mono);font-size:.74rem;color:var(--faint)}
+.ticks span{position:absolute;left:calc(var(--p) / 6 * 100%);transform:translateX(-50%)}
+.ticks span::before{content:"";position:absolute;left:50%;top:-7px;width:1px;height:5px;background:var(--faint)}
+.f-foot{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;align-items:start}
+.f-formula{white-space:normal;line-height:1.9}
+@media (max-width:820px){.f-toolbar,.f-grid,.f-foot{grid-template-columns:minmax(0,1fr)}.f-right{justify-content:flex-start}}
+footer{max-width:1080px;margin:20px auto 0;padding:22px;font-size:.87rem;color:var(--muted);display:flex;flex-direction:column;gap:8px}
+footer b{color:var(--ink)}
+</style>
+
+
+<header class="topbar glass">
+  <div class="brand"><svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 12h5" stroke="#1c1917" stroke-width="2" stroke-linecap="round"/><path d="M8 6l8 6-8 6z" fill="#c2410c"/><path d="M16 5v14M16 12h5M14 15l3 4" stroke="#1c1917" stroke-width="2" stroke-linecap="round" fill="none"/></svg><span><span class="i-id">Konsep Thyristor</span><span class="i-en">Thyristor Concepts</span></span></div>
+  <div class="pill" id="langSeg" role="group" aria-label="Bahasa / Language"><button data-v="id">ID</button><button data-v="en">EN</button></div>
+</header>
+
+<main>
+<!-- HERO -->
+<section class="glass hero">
+  <div style="display:flex;flex-direction:column;gap:18px">
+    <div class="kicker"><span class="i-id">Proyek praktikum Elektronika Daya</span><span class="i-en">Power Electronics lab project</span></div>
+    <h1><span class="i-id">Konsep Thyristor</span><span class="i-en">Thyristor Concepts</span></h1>
+    <p class="tagline"><span class="i-id">Saklar elektronik yang <b>mengunci sendiri</b> setelah dipicu.</span><span class="i-en">An electronic switch that <b>locks itself on</b> once triggered.</span></p>
+    <p class="lead"><span class="i-id">Thyristor (SCR) adalah saklar tanpa bagian bergerak. Cukup “ditekan” sekali dengan sinyal kecil, ia langsung menyala dan tetap menyala selama arus utamanya masih mengalir. Komponen ini ada di pengatur kecepatan motor, pengisi aki, dan pengatur pemanas.</span><span class="i-en">A thyristor (SCR) is a switch with no moving parts. Give it one small nudge and it switches on, and stays on for as long as its main current keeps flowing. You will find it in motor speed controllers, battery chargers and heater controls.</span></p>
+    <div class="cta"><a class="btn dark" href="#coba"><span class="i-id">Coba simulasinya</span><span class="i-en">Try the simulator</span></a><a class="btn" href="#sudut"><span class="i-id">Atur sudut penyalaan</span><span class="i-en">Control the firing angle</span></a></div>
+    <p class="byline"><span class="i-id">Oleh</span><span class="i-en">By</span> <b>Akhwan Aji Nugroho</b> · <span class="i-id">Teknik Elektro, Politeknik Negeri Semarang</span><span class="i-en">Electrical Engineering, Politeknik Negeri Semarang</span></p>
+  </div>
+  <div class="stage" aria-hidden="true">
+    <svg viewBox="0 0 320 300" id="heroArt"></svg>
+  </div>
+</section>
+
+<!-- KONSEP -->
+<section class="glass sec" id="konsep">
+  <div class="kicker"><span class="i-id">Konsep utama</span><span class="i-en">The big idea</span></div>
+  <h2><span class="i-id">Tiga sifat yang membuat thyristor istimewa</span><span class="i-en">Three things that make a thyristor special</span></h2>
+  <div class="three">
+    <div class="card"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 12h14M13 6l6 6-6 6"/></svg></div>
+      <h3><span class="i-id">Hanya satu arah</span><span class="i-en">One way only</span></h3><p><span class="i-id">Seperti pintu putar di stasiun, arus listrik hanya boleh lewat dari satu sisi (anoda) ke sisi lain (katoda). Arah sebaliknya ditolak, selama tegangannya masih di bawah batas kemampuan komponen.</span><span class="i-en">Like a turnstile, current may only pass from one side (anode) to the other (cathode). The opposite direction is blocked, as long as the voltage stays within the part’s rating.</span></p></div>
+    <div class="card"><div class="ico amber"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3"/></svg></div>
+      <h3><span class="i-id">Perlu dipicu</span><span class="i-en">Needs a trigger</span></h3><p><span class="i-id">Walau arahnya sudah benar, thyristor tetap diam sampai kaki ketiganya, <b>gate</b>, menerima sinyal kecil. Sinyal itulah “tombol nyala”-nya.</span><span class="i-en">Even with the right direction, it stays off until its third leg, the <b>gate</b>, receives a small signal. That signal is its “on button”.</span></p></div>
+    <div class="card"><div class="ico red"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg></div>
+      <h3><span class="i-id">Mengunci</span><span class="i-en">Latches</span></h3><p><span class="i-id">Setelah menyala, sinyal gate boleh dilepas dan thyristor tetap menyala. Gate tidak bisa mematikannya.</span><span class="i-en">Once on, the gate signal can be removed and it stays on. The gate cannot switch it off.</span></p></div>
+  </div>
+</section>
+
+<!-- SIMULATOR -->
+<section class="glass sec" id="coba">
+  <div class="kicker"><span class="i-id">Simulasi interaktif</span><span class="i-en">Interactive simulator</span></div>
+  <h2><span class="i-id">Coba sendiri: nyalakan, lepas, lalu matikan</span><span class="i-en">Try it: switch on, let go, then switch off</span></h2>
+  <div class="ctl-row"><span class="lab"><span class="i-id">Sumber listrik</span><span class="i-en">Power source</span></span>
+    <div class="pill" id="modeSeg"><button data-v="dc"><span class="i-id">Baterai (DC)</span><span class="i-en">Battery (DC)</span></button><button data-v="ac"><span class="i-id">Listrik bolak-balik (AC)</span><span class="i-en">Alternating (AC)</span></button></div></div>
+  <div class="sim">
+    <div style="display:flex;flex-direction:column;gap:12px;min-width:0">
+      <div class="stage"><svg id="simSvg" viewBox="0 0 420 270" role="img" aria-label="Rangkaian thyristor"></svg></div>
+      <div class="stage wave" id="waveBox" hidden><svg id="waveSvg" viewBox="0 0 420 150" role="img" aria-label="Gelombang"></svg>
+        <p class="note" style="padding:4px 8px 6px"><span class="i-id">Diperlambat agar terlihat. Abu-abu: listrik AC yang bolak-balik. Oranye: listrik yang sampai ke lampu.</span><span class="i-en">Slowed down so you can see it. Grey: the AC supply swinging back and forth. Orange: what reaches the lamp.</span></p></div>
+    </div>
+    <div class="controls">
+      <div class="ctl-row" id="dirRow"><span class="lab"><span class="i-id">Arah baterai</span><span class="i-en">Battery direction</span></span>
+        <div class="pill" id="dirSeg"><button data-v="ok"><span class="i-id">Benar</span><span class="i-en">Correct</span></button><button data-v="rev"><span class="i-id">Terbalik</span><span class="i-en">Reversed</span></button></div></div>
+      <div class="ctl-row"><span class="lab"><span class="i-id">Saklar utama</span><span class="i-en">Main switch</span></span>
+        <div class="pill" id="swSeg"><button data-v="on"><span class="i-id">Tersambung</span><span class="i-en">Closed</span></button><button data-v="off"><span class="i-id">Diputus</span><span class="i-en">Open</span></button></div></div>
+      <button class="gatebtn" id="gateBtn" aria-pressed="false"></button>
+      <div class="status" aria-live="polite" id="stBox"></div>
+      <div>
+        <div class="kicker" style="margin-bottom:8px"><span class="i-id">Misi</span><span class="i-en">Missions</span></div>
+        <ul class="missions" id="missions"></ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SUDUT PENYALAAN -->
+<section class="glass sec" id="sudut">
+  <div class="kicker"><span class="i-id">Simulasi 2 · Sudut penyalaan</span><span class="i-en">Simulator 2 · Firing angle</span></div>
+  <h2><span class="i-id">Atur kapan thyristor dinyalakan, atur terang lampu</span><span class="i-en">Choose when it fires, choose the brightness</span></h2>
+  <p class="lead"><span class="i-id">Pada listrik AC, thyristor dipicu sekali di setiap gelombang. Semakin lambat dipicu (sudut α makin besar), semakin sedikit bagian gelombang yang sampai ke lampu, sehingga lampu makin redup. Inilah cara kerja peredup lampu dan pengatur kecepatan motor.</span><span class="i-en">On AC the thyristor is triggered once every wave. The later it fires (larger angle α), the less of the wave reaches the lamp, so the lamp gets dimmer. This is how dimmers and motor speed controllers work.</span></p>
+  <div class="f-toolbar">
+    <div class="ctl-row"><span class="lab"><span class="i-id">Tegangan sumber</span><span class="i-en">Supply voltage</span></span><div class="pill" id="fVs"><button data-v="12">12 V</button><button data-v="24">24 V</button><button data-v="48">48 V</button><button data-v="120">120 V</button><button data-v="230">230 V</button></div></div>
+    <div class="ctl-row f-right"><span class="lab"><span class="i-id">Sudut cepat</span><span class="i-en">Quick angles</span></span><div class="pill" id="aPre"><button data-v="0">0°</button><button data-v="30">30°</button><button data-v="60">60°</button><button data-v="90">90°</button><button data-v="120">120°</button><button data-v="150">150°</button><button data-v="180">180°</button></div></div>
+  </div>
+  <div class="f-grid">
+    <div class="stage"><svg id="fWave" viewBox="0 0 520 300" role="img" aria-label="Gelombang sudut penyalaan"></svg></div>
+    <div class="f-panel">
+      <div class="f-lamp">
+        <svg viewBox="0 0 80 80" style="width:76px;height:76px;flex:none" aria-hidden="true"><circle cx="40" cy="40" r="36" fill="#fdba74" id="fGlow" opacity=".2"/><circle cx="40" cy="40" r="20" fill="#fff" stroke="#292524" stroke-width="3"/><circle cx="40" cy="40" r="20" fill="#fdba74" id="fBulb" opacity=".5"/><path d="M28 28l24 24M52 28L28 52" stroke="#292524" stroke-width="2.5"/></svg>
+        <div class="f-lamp-txt">
+          <div class="kicker" style="text-transform:none;letter-spacing:.02em"><span class="i-id">Daya ke lampu (dibanding α = 0°)</span><span class="i-en">Lamp power (relative to α = 0°)</span></div>
+          <div class="f-big" id="fPct"></div>
+          <div class="meter" aria-hidden="true"><i id="fBar"></i></div>
+        </div>
+      </div>
+      <div class="kpis4">
+        <div class="kpi"><span class="v acc" id="fA"></span><span class="k"><span class="i-id">Sudut penyalaan α</span><span class="i-en">Firing angle α</span></span></div>
+        <div class="kpi"><span class="v" id="fCond"></span><span class="k"><span class="i-id">Sudut konduksi (180° − α)</span><span class="i-en">Conduction angle (180° − α)</span></span></div>
+        <div class="kpi"><span class="v" id="fVdc"></span><span class="k"><span class="i-id">Tegangan rata-rata V<sub>dc</sub></span><span class="i-en">Average voltage V<sub>dc</sub></span></span></div>
+        <div class="kpi"><span class="v" id="fVrms"></span><span class="k"><span class="i-id">Tegangan efektif V<sub>rms</sub></span><span class="i-en">RMS voltage V<sub>rms</sub></span></span></div>
+      </div>
+    </div>
+  </div>
+  <div class="f-slider">
+    <div class="ctl-row" style="justify-content:space-between">
+      <label for="aSl" class="lab" style="min-width:0"><span class="i-id">Sudut penyalaan α (langkah 1°)</span><span class="i-en">Firing angle α (1° steps)</span></label>
+      <div class="numbox"><button class="btn" id="aMinus" aria-label="−1°">−</button><input type="number" id="aNum" min="0" max="180" step="1" value="60" aria-label="α"><span>°</span><button class="btn" id="aPlus" aria-label="+1°">+</button></div>
+    </div>
+    <input type="range" id="aSl" min="0" max="180" step="1" value="60">
+    <div class="ticks" aria-hidden="true"><span style="--p:0">0°</span><span style="--p:1">30°</span><span style="--p:2">60°</span><span style="--p:3">90°</span><span style="--p:4">120°</span><span style="--p:5">150°</span><span style="--p:6">180°</span></div>
+  </div>
+  <div class="f-foot">
+    <div class="formula f-formula">V<sub>dc</sub> = (V<sub>m</sub> / 2π) · (1 + cos α)<br>V<sub>rms</sub> = V<sub>m</sub> · √[(π − α + ½ sin 2α) / 4π]<br>P / P<sub>α=0</sub> = (π − α + ½ sin 2α) / π</div>
+    <div class="stack" style="gap:8px"><p class="note" id="fNote"></p><p class="note" id="fSrc"></p></div>
+  </div>
+</section>
+
+<!-- KAPASITOR -->
+<section class="glass sec" id="kapasitor">
+  <div class="kicker"><span class="i-id">Simulasi 3 · Tambah kapasitor</span><span class="i-en">Simulator 3 · Add a capacitor</span></div>
+  <h2><span class="i-id">Kapasitor membuat lampu bisa diredupkan hampir sampai padam</span><span class="i-en">A capacitor lets the lamp dim almost to off</span></h2>
+  <p class="lead"><span class="i-id">Tanpa kapasitor, pemicu dari resistor hanya bisa menunda nyala thyristor sampai puncak gelombang (90°), jadi lampu paling redup masih mendapat separuh daya. Kapasitor bekerja seperti ember yang diisi lewat keran (potensiometer R): gate baru dipicu setelah ember cukup penuh. Makin kecil kerannya, makin lambat terisi, makin lambat thyristor menyala.</span><span class="i-en">Without a capacitor, a resistor trigger can only delay firing up to the wave’s peak (90°), so the dimmest setting still gets half the power. The capacitor acts like a bucket filled through a tap (potentiometer R): the gate fires only once the bucket is full enough. The smaller the tap, the slower it fills, the later the thyristor fires.</span></p>
+  <div class="ctl-row"><span class="lab"><span class="i-id">Rangkaian pemicu</span><span class="i-en">Trigger circuit</span></span>
+    <div class="pill" id="capMode"><button data-v="rc"><span class="i-id">Dengan kapasitor (RC)</span><span class="i-en">With capacitor (RC)</span></button><button data-v="r"><span class="i-id">Tanpa kapasitor (R saja)</span><span class="i-en">Without capacitor (R only)</span></button></div></div>
+  <div class="ctl-row"><span class="lab"><span class="i-id">Tegangan sumber</span><span class="i-en">Supply voltage</span></span><div class="pill" id="cVs"><button data-v="12">12 V</button><button data-v="24">24 V</button><button data-v="48">48 V</button><button data-v="120">120 V</button><button data-v="230">230 V</button></div>
+    <div class="pill" id="cF"><button data-v="50">50 Hz</button><button data-v="60">60 Hz</button></div></div>
+  <div class="ctl-row" id="cCRow"><span class="lab"><span class="i-id">Kapasitor C</span><span class="i-en">Capacitor C</span></span><div class="pill" id="cC"><button data-v="0.047">0,047 µF</button><button data-v="0.1">0,1 µF</button><button data-v="0.22">0,22 µF</button><button data-v="0.47">0,47 µF</button><button data-v="1">1 µF</button></div></div>
+  <div class="sim">
+    <div style="display:flex;flex-direction:column;gap:12px;min-width:0">
+      <div class="stage"><svg id="capSch" viewBox="0 0 440 230" role="img" aria-label="Rangkaian pemicu"></svg></div>
+      <div class="stage"><svg id="capWave" viewBox="0 0 520 240" role="img" aria-label="Gelombang pemicu"></svg></div>
+      <div class="ctl-row" style="gap:12px"><label for="capSl" class="lab" style="min-width:0"><span class="i-id">Putar potensiometer R</span><span class="i-en">Turn potentiometer R</span></label><span id="capRTxt" style="font-family:var(--f-mono);font-weight:600"></span></div>
+      <input type="range" id="capSl" min="0" max="100" step="1" value="45">
+    </div>
+    <div class="controls">
+      <div class="kpis">
+        <div class="kpi"><span class="v acc" id="capA"></span><span class="k"><span class="i-id">Sudut penyalaan α</span><span class="i-en">Firing angle α</span></span></div>
+        <div class="kpi"><span class="v" id="capP"></span><span class="k"><span class="i-id">Daya lampu (dibanding α = 0°)</span><span class="i-en">Lamp power (vs α = 0°)</span></span></div>
+        <div class="kpi"><span class="v" id="capV"></span><span class="k"><span class="i-id">Tegangan rata-rata lampu</span><span class="i-en">Average lamp voltage</span></span></div>
+        <div class="kpi"><span class="v" id="capW"></span><span class="k"><span class="i-id">Nilai ωRC (tanpa satuan)</span><span class="i-en">ωRC (dimensionless)</span></span></div>
+      </div>
+      <p class="note" id="capNote" style="min-height:4.8em"></p>
+      <div class="stage"><svg id="capCurve" viewBox="0 0 360 190" role="img" aria-label="Sudut penyalaan terhadap posisi potensiometer"></svg></div>
+      <p class="note" id="capSrc"></p>
+      <p class="note"><span class="i-id">Thyristor dipicu saat v<sub>C</sub> ≥ V<sub>GT</sub> + V<sub>D1</sub> ≈ 1,45 V dan arus gate ≥ I<sub>GT</sub>. Diasumsikan SCR gate peka (I<sub>GT</sub> ≈ 0,2 mA). Batas bawah R dipilih agar arus gate puncak tidak melebihi 50 mA. Saat tegangan diganti, nilai C yang disarankan dipilih otomatis; nilai lain tetap boleh dicoba.</span><span class="i-en">The thyristor fires when v<sub>C</sub> ≥ V<sub>GT</sub> + V<sub>D1</sub> ≈ 1.45 V and gate current ≥ I<sub>GT</sub>. A sensitive-gate SCR (I<sub>GT</sub> ≈ 0.2 mA) is assumed. The lower limit of R keeps peak gate current below 50 mA. Changing the voltage selects a suggested C automatically; other values can still be tried.</span></p>
+    </div>
+  </div>
+</section>
+
+<!-- SYARAT & MATIKAN -->
+<section class="two">
+  <div class="glass sec">
+    <div class="kicker"><span class="i-id">Kapan menyala?</span><span class="i-en">When does it turn on?</span></div>
+    <h2><span class="i-id">Tiga syarat menyala</span><span class="i-en">Three conditions to turn on</span></h2>
+    <div class="step"><span class="n">1</span><div><h3><span class="i-id">Arah listrik benar</span><span class="i-en">Correct direction</span></h3><p><span class="i-id">Sisi anoda harus berpotensial lebih tinggi daripada sisi katoda. Kalau arahnya terbalik, thyristor menolak walaupun gate dipicu.</span><span class="i-en">The anode must be at a higher potential than the cathode. If the direction is reversed, it refuses even when the gate is triggered.</span></p></div></div>
+    <div class="step"><span class="n">2</span><div><h3><span class="i-id">Gate mendapat sinyal pemicu</span><span class="i-en">The gate gets a trigger</span></h3><p><span class="i-id">Arus kecil masuk ke gate membuat thyristor menyala. Besarnya tergantung tipe: dari kurang dari 1 mA pada SCR gate peka sampai puluhan miliampere pada SCR daya (2N4444: paling besar 30 mA).</span><span class="i-en">A small current into the gate switches it on. How small depends on the type: under 1 mA for sensitive-gate SCRs, up to tens of milliamps for power SCRs (2N4444: at most 30 mA).</span></p></div></div>
+    <div class="step"><span class="n">3</span><div><h3><span class="i-id">Arus utama cukup besar</span><span class="i-en">Enough main current</span></h3><p><span class="i-id">Arus yang mengalir dari anoda ke katoda harus mencapai batas yang disebut arus kunci (<i>latching current</i>). Kalau tercapai, thyristor tetap menyala walaupun gate dilepas.</span><span class="i-en">The current flowing from anode to cathode must reach a level called the <i>latching current</i>. Once it does, the thyristor stays on even after the gate is released.</span></p></div></div>
+    <div class="mini" aria-hidden="true"><svg id="miniOn" viewBox="0 0 360 96"></svg></div>
+  </div>
+  <div class="glass sec">
+    <div class="kicker"><span class="i-id">Bagaimana mematikannya?</span><span class="i-en">How do you switch it off?</span></div>
+    <h2><span class="i-id">Hentikan arus utamanya</span><span class="i-en">Stop the main current</span></h2>
+    <p><span class="i-id">Melepas sinyal gate <b>tidak</b> mematikan thyristor yang sudah menyala. Satu-satunya cara adalah membuat arus utama, yaitu arus yang mengalir dari anoda ke katoda dan melewati lampu, turun hampir nol, di bawah batas yang disebut arus tahan (<i>holding current</i>).</span><span class="i-en">Releasing the gate does <b>not</b> switch off a thyristor that is already on. The only way is to make the main current, the current flowing from anode to cathode through the lamp, fall to almost zero, below a level called the <i>holding current</i>.</span></p>
+    <div class="step"><span class="n">DC</span><div><h3><span class="i-id">Pada baterai</span><span class="i-en">On a battery</span></h3><p><span class="i-id">Arus utama tidak pernah berhenti sendiri, jadi harus diputus, misalnya dengan membuka saklar.</span><span class="i-en">The main current never stops by itself, so it must be broken, for example by opening a switch.</span></p></div></div>
+    <div class="step"><span class="n">AC</span><div><h3><span class="i-id">Pada listrik bolak-balik</span><span class="i-en">On alternating current</span></h3><p><span class="i-id">Arus utama turun ke nol di akhir setiap gelombang (50 kali per detik pada listrik 50 Hz), sehingga thyristor padam sendiri dan harus dipicu lagi di gelombang berikutnya.</span><span class="i-en">The main current falls to zero at the end of every wave (50 times a second on 50 Hz power), so the thyristor switches itself off and must be triggered again on the next wave.</span></p></div></div>
+    <div class="mini" aria-hidden="true"><svg id="miniOff" viewBox="0 0 360 96"></svg></div>
+  </div>
+</section>
+
+<!-- LAB -->
+<section class="glass sec">
+  <div class="kicker"><span class="i-id">Dibuktikan di laboratorium</span><span class="i-en">Proven in the lab</span></div>
+  <h2><span class="i-id">Apa yang kami ukur</span><span class="i-en">What we measured</span></h2>
+  <p class="lead"><span class="i-id">Dua thyristor (2N4444 dan T10N) diuji dengan lampu 12 V di tujuh rangkaian. Perilaku utamanya sesuai teori di buku teks; selisih kecil pada angka berasal dari alat ukur dan rangkaian uji.</span><span class="i-en">Two thyristors (2N4444 and T10N) were tested with a 12 V lamp in seven circuits. Their main behaviour matched textbook theory; small numerical differences came from the instruments and the test circuits.</span></p>
+  <div class="facts">
+    <div class="fact"><span class="num">≈ 1 V</span><p><span class="i-id">Tegangan yang “dimakan” thyristor saat menyala. Sisanya sampai ke lampu.</span><span class="i-en">Voltage the thyristor itself takes while on. The rest goes to the lamp.</span></p></div>
+    <div class="fact"><span class="num">30 V</span><p><span class="i-id">Tegangan yang ditahan tanpa menyala sedikit pun, selama gate tidak dipicu.</span><span class="i-en">Voltage it held back without switching on at all, as long as the gate was not triggered.</span></p></div>
+    <div class="fact"><span class="num"><span class="i-id">½ gelombang</span><span class="i-en">½ wave</span></span><p><span class="i-id">Pada listrik AC, lampu hanya mendapat setengah gelombang, karena arus hanya boleh lewat satu arah.</span><span class="i-en">On AC the lamp only gets half of each wave, because current may only pass one way.</span></p></div>
+  </div>
+  <div class="labgrid">
+    <img src="data:image/jpeg;base64,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" alt="Layar osiloskop: tegangan lampu berupa setengah gelombang">
+    <div style="display:flex;flex-direction:column;gap:10px">
+      <h3><span class="i-id">Setengah gelombang di layar osiloskop</span><span class="i-en">Half-waves on the oscilloscope</span></h3>
+      <p><span class="i-id">Gambar ini adalah tegangan lampu yang kami rekam. Lampu menerima “bukit-bukit” listrik lalu nol, berulang 50 kali per detik. Setiap kali listrik AC berbalik arah, thyristor padam sendiri, persis seperti di simulasi.</span><span class="i-en">This is the lamp voltage we recorded. The lamp receives “humps” of power, then nothing, 50 times a second. Each time the AC reverses, the thyristor switches itself off, exactly as in the simulator.</span></p>
+      <p class="note"><span class="i-id">Osiloskop Hantek DSO4204B, sumber 6 V AC, skala 5 V dan 5 milidetik per kotak.</span><span class="i-en">Hantek DSO4204B oscilloscope, 6 V AC source, 5 V and 5 ms per division.</span></p>
+    </div>
+  </div>
+</section>
+
+<!-- USES -->
+<section class="glass sec">
+  <div class="kicker"><span class="i-id">Di mana dipakai?</span><span class="i-en">Where is it used?</span></div>
+  <h2><span class="i-id">Thyristor di sekitar kita</span><span class="i-en">Thyristors around us</span></h2>
+  <div class="uses">
+    <div class="card"><div class="ico amber"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M9 18h6M10 21h4M12 3a6 6 0 0 0-4 10.5c.8.8 1 1.5 1 2.5h6c0-1 .2-1.7 1-2.5A6 6 0 0 0 12 3z"/></svg></div><h3><span class="i-id">Peredup lampu</span><span class="i-en">Light dimmers</span></h3><p class="note"><span class="i-id">Mengatur terang lampu dengan menyalakan thyristor lebih cepat atau lebih lambat di setiap gelombang.</span><span class="i-en">Set brightness by firing earlier or later in each wave.</span></p></div>
+    <div class="card"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="8"/><path d="M12 12l4-3M12 4v2M20 12h-2"/></svg></div><h3><span class="i-id">Kecepatan motor</span><span class="i-en">Motor speed</span></h3><p class="note"><span class="i-id">Mesin bor, konveyor, dan motor DC industri.</span><span class="i-en">Drills, conveyors and industrial DC motors.</span></p></div>
+    <div class="card"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="7" width="16" height="12" rx="2"/><path d="M21 11v4M9 10l-2 4h4l-2 4"/></svg></div><h3><span class="i-id">Pengisi aki</span><span class="i-en">Battery chargers</span></h3><p class="note"><span class="i-id">Mengubah listrik AC menjadi DC yang dapat diatur.</span><span class="i-en">Turning AC into adjustable DC.</span></p></div>
+    <div class="card"><div class="ico red"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 20h12M8 16c0-3 3-4 3-8 2 2 5 4 5 8M8 16a4 4 0 0 0 8 0"/></svg></div><h3><span class="i-id">Pemanas industri</span><span class="i-en">Industrial heaters</span></h3><p class="note"><span class="i-id">Mengatur daya oven dan tungku tanpa kontak mekanis.</span><span class="i-en">Controlling oven and furnace power without mechanical contacts.</span></p></div>
+  </div>
+</section>
+</main>
+
+<footer class="glass">
+  <div><b>Akhwan Aji Nugroho</b> · <span class="i-id">Jurusan Teknik Elektro, Politeknik Negeri Semarang</span><span class="i-en">Department of Electrical Engineering, Politeknik Negeri Semarang</span></div>
+  <div><span class="i-id">Berdasarkan Praktikum VII Karakteristik Thyristor, Elektronika Daya. Rujukan: M. H. Rashid (ed.), <i>Power Electronics Handbook</i>, Bab 3; datasheet SCR 2N4441–2N4444.</span><span class="i-en">Based on Experiment VII, Thyristor Characteristics, Power Electronics lab. References: M. H. Rashid (ed.), <i>Power Electronics Handbook</i>, Ch. 3; 2N4441–2N4444 SCR datasheet.</span></div>
+  <div class="note"><span class="i-id">Simulasi disederhanakan untuk tujuan belajar.</span><span class="i-en">The simulator is simplified for learning purposes.</span></div>
+</footer>
+
+<script>
+const $ = s => document.querySelector(s);
+let LANG = 'id';
+try { const v = localStorage.getItem('thy-lang'); if (v === 'en' || v === 'id') LANG = v; } catch (e) {}
+const T = (i, e) => LANG === 'en' ? e : i;
+const redraw = [];
+function seg(el, val, cb) {
+  const bs = [...el.querySelectorAll('button')];
+  const set = v => bs.forEach(b => b.setAttribute('aria-pressed', String(b.dataset.v === v)));
+  bs.forEach(b => b.addEventListener('click', () => { set(b.dataset.v); cb(b.dataset.v); }));
+  set(val); return set;
+}
+function setLang(l) { LANG = l; document.documentElement.dataset.lang = l; document.documentElement.lang = l; try { localStorage.setItem('thy-lang', l); } catch (e) {} redraw.forEach(f => f()); }
+seg($('#langSeg'), LANG, setLang);
+
+/* hero: rangkaian 5 — sumber AC, anoda dan gate ke terminal a, lampu di katoda */
+(function () {
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const svg = $('#heroArt'); let ph = reduce ? Math.PI / 2 : 0, last = 0;
+  function draw() {
+    const v = Math.sin(ph), on = v > 0.06, br = on ? v : 0;
+    let s = `<circle cx="240" cy="92" r="${44 + 18 * br}" fill="#fdba74" fill-opacity="${(0.45 * br).toFixed(2)}"/>`;
+    s += `<path class="wire" d="M60 118 V44 H112 M146 44 H240 V76 M240 108 V188 H60 V162"/>`;
+    s += `<path class="flow ${on ? 'live' : ''}" d="M60 118 V44 H240 V188 H60 V162"/>`;
+    s += `<circle cx="60" cy="140" r="22" fill="#fff" stroke="#292524" stroke-width="3"/><path d="M46 140 q7 -14 14 0 t14 0" fill="none" stroke="#292524" stroke-width="3"/>`;
+    s += `<text x="40" y="48" font-size="13" font-weight="600" fill="#57534e">a</text><text x="40" y="192" font-size="13" font-weight="600" fill="#57534e">b</text>`;
+    s += `<polygon points="112,30 112,58 140,44" fill="#c2410c"/><line x1="140" y1="28" x2="140" y2="60" stroke="#c2410c" stroke-width="4"/><line class="wire" x1="140" y1="44" x2="146" y2="44"/>`;
+    s += `<path d="M140 52 l14 16 v22 H60" stroke="${on ? '#c2410c' : '#292524'}" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/><circle cx="60" cy="90" r="4" fill="#292524"/>`;
+    s += `<text x="160" y="84" font-size="11" font-weight="600" fill="#c2410c">gate → a</text>`;
+    s += `<circle cx="240" cy="92" r="16" fill="${on ? '#ffedd5' : '#fff'}" stroke="#292524" stroke-width="3"/><path d="M229 81l22 22M251 81l-22 22" stroke="#292524" stroke-width="2.5"/>`;
+    // gelombang mini
+    const x0 = 24, x1 = 296, mid = 262, A = 22;
+    let src = '', fill = `M${x0} ${mid}`;
+    for (let i = 0; i <= 120; i++) { const d = i / 120 * 4 * Math.PI, x = x0 + (x1 - x0) * i / 120, y = mid - A * Math.sin(d);
+      src += (i ? 'L' : 'M') + x.toFixed(1) + ' ' + y.toFixed(1); fill += 'L' + x.toFixed(1) + ' ' + (Math.sin(d) > 0.06 ? y : mid).toFixed(1); }
+    fill += `L${x1} ${mid}Z`;
+    const cx = x0 + (x1 - x0) * ((ph % (4 * Math.PI)) / (4 * Math.PI));
+    s += `<line x1="${x0}" y1="${mid}" x2="${x1}" y2="${mid}" stroke="#e7e5e4"/><path d="${fill}" fill="rgba(194,65,12,.16)" stroke="none"/><path d="${src}" fill="none" stroke="#a8a29e" stroke-width="1.6" stroke-dasharray="4 3"/>`;
+    s += `<line x1="${cx}" y1="${mid - A - 6}" x2="${cx}" y2="${mid + A + 6}" stroke="#c2410c" stroke-width="1.5"/>`;
+    s += `<text x="160" y="${mid - A - 12}" text-anchor="middle" font-size="12" font-weight="600" fill="${on ? '#c2410c' : '#57534e'}">${v >= 0 ? (on ? T('a lebih tinggi → thyristor ON', 'a is higher → thyristor ON') : T('a mulai lebih tinggi → menunggu tegangan cukup', 'a just went higher → waiting for enough voltage')) : T('b lebih tinggi → thyristor OFF', 'b is higher → thyristor OFF')}</text>`;
+    svg.innerHTML = s;
+  }
+  function loop(t) { if (last) ph += Math.min(60, t - last) * 0.0028; last = t; draw(); requestAnimationFrame(loop); }
+  draw(); if (!reduce) requestAnimationFrame(loop); redraw.push(draw);
+})();
+
+/* animasi kecil: tiga syarat menyala dan cara mematikan */
+(function () {
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  let t0 = 0;
+  function on(t) {
+    const p = reduce ? 9 : ((t - t0) / 1000) % 6; // 0..6 s
+    const lab = [T('Arah benar', 'Right direction'), T('Gate dipicu', 'Gate triggered'), T('Arus cukup', 'Enough current')];
+    let s = '';
+    lab.forEach((l, i) => { const lit = p > 0.6 + i * 0.9; const x = 8 + i * 92;
+      s += `<rect x="${x}" y="22" width="86" height="40" rx="8" fill="${lit ? '#fff7ed' : '#fff'}" stroke="${lit ? '#c2410c' : '#e7e5e4'}" stroke-width="1.5"/>`;
+      s += `<circle cx="${x + 14}" cy="42" r="6" fill="${lit ? '#c2410c' : '#e7e5e4'}"/><text x="${x + 25}" y="46" font-size="10.5" font-weight="600" fill="${lit ? '#1c1917' : '#a8a29e'}">${l}</text>`; });
+    const all = p > 3.3;
+    s += `<path d="M286 42 H300" stroke="#a8a29e" stroke-width="2"/><circle cx="326" cy="42" r="${all ? 26 : 0}" fill="#fdba74" fill-opacity=".45"/><circle cx="326" cy="42" r="15" fill="${all ? '#ffedd5' : '#fff'}" stroke="#292524" stroke-width="2.5"/><path d="M316 32l20 20M336 32l-20 20" stroke="#292524" stroke-width="2"/>`;
+    s += `<text x="8" y="84" font-size="10.5" fill="#57534e">${all ? T('Ketiga syarat terpenuhi: thyristor menyala dan terkunci.', 'All three met: the thyristor is on and latched.') : T('Menunggu semua syarat terpenuhi…', 'Waiting for all three conditions…')}</text>`;
+    $('#miniOn').innerHTML = s;
+  }
+  function off(t) {
+    const p = reduce ? 0.3 : (((t - t0) / 1000) % 5) / 5; // 0..1
+    const x0 = 34, x1 = 262, top = 14, base = 74, H = base - top, hold = 0.14;
+    const I = q => q < 0.25 ? 1 : Math.max(0, Math.cos((q - 0.25) / 0.6 * Math.PI / 2));
+    let d = '', q;
+    for (q = 0; q <= p + 1e-9; q += 0.01) d += (q ? 'L' : 'M') + (x0 + (x1 - x0) * q).toFixed(1) + ' ' + (base - H * I(q)).toFixed(1);
+    const cur = I(p), lit = !(p > 0.25 && cur < hold) && !(p > 0.8);
+    let s = `<line x1="${x0}" y1="${base}" x2="${x1}" y2="${base}" stroke="#e7e5e4"/><line x1="${x0}" y1="${top}" x2="${x0}" y2="${base}" stroke="#e7e5e4"/>`;
+    s += `<line x1="${x0}" y1="${base - H * hold}" x2="${x1}" y2="${base - H * hold}" stroke="#57534e" stroke-dasharray="4 3"/><text x="${x1}" y="${base - H * hold - 4}" text-anchor="end" font-size="10" fill="#57534e">${T('arus tahan', 'holding current')}</text>`;
+    s += `<path d="${d}" fill="none" stroke="#c2410c" stroke-width="2.5" stroke-linejoin="round"/>`;
+    s += `<text x="4" y="${top + 8}" font-size="10" fill="#a8a29e">${T('arus', 'current')}</text><text x="${x0}" y="90" font-size="10" fill="#a8a29e">${T('waktu →', 'time →')}</text>`;
+    s += `<circle cx="318" cy="44" r="${lit ? 26 : 0}" fill="#fdba74" fill-opacity=".45"/><circle cx="318" cy="44" r="15" fill="${lit ? '#ffedd5' : '#fff'}" stroke="#292524" stroke-width="2.5"/><path d="M308 34l20 20M328 34l-20 20" stroke="#292524" stroke-width="2"/>`;
+    s += `<text x="318" y="84" text-anchor="middle" font-size="10.5" font-weight="600" fill="${lit ? '#c2410c' : '#57534e'}">${lit ? 'ON' : 'OFF'}</text>`;
+    $('#miniOff').innerHTML = s;
+  }
+  function loop(t) { if (!t0) t0 = t; on(t); off(t); if (!reduce) requestAnimationFrame(loop); }
+  requestAnimationFrame(loop); redraw.push(() => { on(performance.now()); off(performance.now()); });
+})();
+
+/* ===== simulator ===== */
+const S = { mode: 'dc', dir: 'ok', sw: 'on', gate: false, on: false, phase: 0, everOn: false, latchSeen: false, offSeen: false, revTried: false, acAuto: false, acRelease: false, hist: [] };
+seg($('#modeSeg'), 'dc', v => { S.mode = v; S.on = false; S.hist = []; $('#dirRow').hidden = v === 'ac'; $('#waveBox').hidden = v !== 'ac'; render(); });
+seg($('#dirSeg'), 'ok', v => { S.dir = v; logic(); render(); });
+seg($('#swSeg'), 'on', v => { S.sw = v; logic(); render(); });
+const gb = $('#gateBtn');
+const press = v => { S.gate = v; gb.classList.toggle('held', v); gb.setAttribute('aria-pressed', String(v)); logic(); render(); };
+gb.addEventListener('pointerdown', e => { e.preventDefault(); gb.setPointerCapture?.(e.pointerId); press(true); });
+['pointerup', 'pointercancel', 'lostpointercapture'].forEach(ev => gb.addEventListener(ev, () => S.gate && press(false)));
+gb.addEventListener('keydown', e => { if ((e.key === ' ' || e.key === 'Enter') && !e.repeat) { e.preventDefault(); press(true); } });
+gb.addEventListener('keyup', e => { if (e.key === ' ' || e.key === 'Enter') { e.preventDefault(); press(false); } });
+
+function srcPositive() { return S.mode === 'dc' ? S.dir === 'ok' : Math.sin(S.phase) > 0.04; }
+function logic() {
+  const closed = S.sw === 'on';
+  const wasOn = S.on;
+  if (!closed) S.on = false;
+  if (S.mode === 'dc') {
+    if (S.dir === 'rev') { S.on = false; if (S.gate && closed) S.revTried = true; }
+    if (closed && S.dir === 'ok' && S.gate) S.on = true;
+  } else {
+    const v = Math.sin(S.phase);
+    if (S.on && v <= 0.02) { S.on = false; S.acAuto = true; if (!S.gate) S.acRelease = true; }
+    if (!S.on && closed && S.gate && v > 0.04) S.on = true;
+  }
+  if (S.on) { S.everOn = true; if (S.mode === 'ac') S.acOn = true; }
+  if (S.on && !S.gate && S.mode === 'dc') S.latchSeen = true;
+  if (wasOn && !S.on && S.mode === 'dc' && S.latchSeen && !closed) S.offSeen = true;
+}
+
+function circuit() {
+  const ac = S.mode === 'ac', closed = S.sw === 'on', on = S.on;
+  const v = ac ? Math.sin(S.phase) : 1, bright = on ? (ac ? Math.max(0, v) : 1) : 0;
+  const top = ac ? '' : (S.dir === 'ok' ? '+' : '−'), bot = ac ? '' : (S.dir === 'ok' ? '−' : '+');
+  let s = ``;
+  s += `<circle cx="340" cy="135" r="${60 + 30 * bright}" fill="#fdba74" fill-opacity=".3" opacity="${bright}"/>`;
+  // kabel
+  s += `<path class="wire" d="M60 110 V40 H110 M160 40 H200 M250 40 H340 V112 M340 158 V230 H60 V160"/>`;
+  // saklar utama
+  s += `<circle cx="110" cy="40" r="5" fill="#292524"/><circle cx="160" cy="40" r="5" fill="#292524"/>` + (closed ? `<line class="wire" x1="110" y1="40" x2="160" y2="40"/>` : `<line class="wire" x1="110" y1="40" x2="152" y2="14"/>`);
+  s += `<text x="135" y="66" text-anchor="middle" font-size="12" font-weight="600" fill="#57534e">${T('saklar', 'switch')}</text>`;
+  // thyristor
+  s += `<polygon points="200,22 200,58 232,40" fill="#c2410c"/><line x1="232" y1="19" x2="232" y2="61" stroke="#c2410c" stroke-width="5"/><line class="wire" x1="232" y1="40" x2="250" y2="40"/>`;
+  s += `<text x="216" y="84" text-anchor="middle" font-size="12" font-weight="700" fill="#c2410c">${T('thyristor', 'thyristor')}</text>`;
+  s += `<path d="M232 50 l16 18 v40" stroke="#c2410c" stroke-width="3" fill="none" stroke-linecap="round"/>`;
+  s += `<circle cx="248" cy="122" r="15" fill="${S.gate ? '#c2410c' : '#fff'}" stroke="#c2410c" stroke-width="3"/><text x="248" y="153" text-anchor="middle" font-size="12" font-weight="600" fill="#c2410c">gate</text>`;
+  s += `<text x="200" y="14" font-size="11" fill="#57534e">A</text><text x="236" y="14" font-size="11" fill="#57534e">K</text>`;
+  // lampu
+  s += `<circle cx="340" cy="135" r="23" fill="${bright > 0.05 ? '#ffedd5' : '#fff'}" fill-opacity="${0.3 + 0.7 * bright}" stroke="#292524" stroke-width="3"/><path d="M324 119l32 32M356 119l-32 32" stroke="#292524" stroke-width="2.5"/>`;
+  s += `<text x="370" y="140" font-size="12" font-weight="600" fill="#57534e">${T('lampu', 'lamp')}</text>`;
+  // sumber
+  if (ac) {
+    s += `<circle cx="60" cy="135" r="25" fill="#fff" stroke="#292524" stroke-width="3"/><path d="M44 135 q8 -16 16 0 t16 0" fill="none" stroke="#292524" stroke-width="3"/>`;
+    s += `<text x="20" y="139" text-anchor="middle" font-size="12" font-weight="600" fill="#57534e">AC</text>`;
+  } else {
+    s += `<rect x="40" y="110" width="40" height="50" rx="8" fill="#fff" stroke="#292524" stroke-width="3"/>`;
+    s += `<text x="60" y="130" text-anchor="middle" font-size="16" font-weight="700" fill="${S.dir === 'ok' ? '#292524' : '#c2410c'}">${top}</text><text x="60" y="153" text-anchor="middle" font-size="16" font-weight="700" fill="${S.dir === 'ok' ? '#292524' : '#c2410c'}">${bot}</text>`;
+  }
+  s += `<path class="flow ${on ? 'live' : ''}" d="M60 110 V40 H340 V230 H60 V160" style="animation-duration:${ac ? 0.5 : 0.7}s"/>`;
+  return s;
+}
+function wave() {
+  const W = 420, H = 150, m = 18, mid = H / 2 - 4, A = 52;
+  const pts = S.hist; if (!pts.length) return `<line x1="${m}" y1="${mid}" x2="${W - m}" y2="${mid}" stroke="#e7e5e4"/>`;
+  const X = i => m + i * (W - 2 * m) / 199;
+  let src = '', lamp = `M${X(0)} ${mid}`;
+  pts.forEach((p, i) => { src += (i ? 'L' : 'M') + X(i).toFixed(1) + ' ' + (mid - p.v * A).toFixed(1); lamp += 'L' + X(i).toFixed(1) + ' ' + (mid - p.l * A).toFixed(1); });
+  lamp += `L${X(pts.length - 1)} ${mid}Z`;
+  return `<line x1="${m}" y1="${mid}" x2="${W - m}" y2="${mid}" stroke="#e7e5e4"/>
+    <path d="${lamp}" fill="rgba(194,65,12,.14)" stroke="#c2410c" stroke-width="2.5" stroke-linejoin="round"/>
+    <path d="${src}" fill="none" stroke="#7d8d96" stroke-width="2" stroke-dasharray="5 4"/>
+    <text x="${m}" y="${H - 6}" font-size="11" fill="#57534e">${T('waktu →', 'time →')}</text>`;
+}
+function status() {
+  const closed = S.sw === 'on';
+  const OFF = T('Lampu padam', 'Lamp off');
+  let L, k;
+  if (S.mode === 'dc') {
+    L = [
+      [OFF, T('Saklar diputus, arus utama berhenti, thyristor padam. Sambungkan lagi: lampu tetap padam sampai gate ditekan lagi.', 'The switch is open, the main current stops and the thyristor switches off. Close it again: the lamp stays off until you press the gate again.')],
+      [OFF, T('Gate ditekan, tetapi arah baterai terbalik. Thyristor hanya mengalirkan arus satu arah, jadi ia menolak.', 'The gate is pressed, but the battery is reversed. A thyristor only conducts one way, so it refuses.')],
+      [OFF, T('Baterai terbalik. Coba tekan gate: tetap tidak akan menyala.', 'The battery is reversed. Try pressing the gate: it still will not switch on.')],
+      [T('Lampu menyala', 'Lamp on'), T('Arah benar dan gate dipicu, jadi thyristor menyala. Sekarang lepaskan tombolnya.', 'Correct direction and gate triggered, so it switches on. Now let go of the button.')],
+      [T('Tetap menyala, terkunci', 'Still on, latched'), T('Tombol sudah dilepas, tetapi lampu tetap menyala. Untuk mematikannya, putus saklar utama.', 'The button is released, yet the lamp stays on. To switch it off, open the main switch.')],
+      [OFF, T('Arah sudah benar, tetapi thyristor menunggu sinyal. Tekan dan tahan tombol gate.', 'The direction is right, but the thyristor is waiting for a signal. Press and hold the gate button.')]];
+    k = !closed ? 0 : S.dir === 'rev' ? (S.gate ? 1 : 2) : S.on ? (S.gate ? 3 : 4) : 5;
+  } else {
+    L = [
+      [OFF, T('Saklar diputus.', 'The switch is open.')],
+      [T('Menyala setengah waktu', 'On half the time'), T('Selama gate ditahan, thyristor menyala di setiap setengah gelombang yang arahnya benar, lalu padam sendiri saat listrik berbalik arah.', 'While the gate is held, it switches on in every half-wave with the right direction, then switches itself off when the current reverses.')],
+      [T('Menunggu arah benar', 'Waiting for the right direction'), T('Selama gate ditahan, thyristor menyala di setiap setengah gelombang yang arahnya benar, lalu padam sendiri saat listrik berbalik arah.', 'While the gate is held, it switches on in every half-wave with the right direction, then switches itself off when the current reverses.')],
+      [T('Menyala sampai gelombang ini habis', 'On until this half-wave ends'), T('Gate sudah dilepas. Thyristor tetap menyala sampai arus utama turun ke nol, lalu padam sendiri.', 'The gate is released. It stays on until the main current reaches zero, then switches itself off.')],
+      [OFF, T('Begitu arus AC mencapai nol, thyristor padam sendiri tanpa perlu memutus saklar. Inilah bedanya dengan baterai.', 'As soon as the AC current reached zero, the thyristor switched itself off with no switch needed. That is the difference from a battery.')],
+      [OFF, T('Tekan dan tahan gate untuk menyalakan lampu.', 'Press and hold the gate to light the lamp.')]];
+    k = !closed ? 0 : S.gate ? (S.on ? 1 : 2) : S.on ? 3 : (S.acRelease ? 4 : 5);
+  }
+  $('#stBox').innerHTML = L.map((m, i) => `<div class="msg ${i === k ? 'on' : ''}"${i === k ? '' : ' aria-hidden="true"'}><div class="big">${m[0]}</div><p style="margin-top:4px">${m[1]}</p></div>`).join('');
+
+  const M = S.mode === 'dc' ? [
+    [S.everOn, T('Nyalakan lampu', 'Switch the lamp on')],
+    [S.latchSeen, T('Lepas tombol gate: apakah lampu tetap menyala?', 'Release the gate: does the lamp stay on?')],
+    [S.offSeen, T('Matikan lampu yang sudah terkunci', 'Switch off the latched lamp')],
+    [S.revTried, T('Balik baterai, lalu tekan gate', 'Reverse the battery, then press the gate')]
+  ] : [
+    [S.acOn, T('Tahan gate dan lihat lampu berkedip mengikuti gelombang', 'Hold the gate and watch the lamp pulse with the wave')],
+    [S.acRelease, T('Lepas gate: lampu padam sendiri di akhir gelombang', 'Release the gate: the lamp switches off by itself at the end of the wave')]
+  ];
+  $('#missions').innerHTML = M.map(([d, t]) => `<li class="${d ? 'done' : ''}"><span class="box"></span><span>${t}</span></li>`).join('');
+  $('#gateBtn').innerHTML = `<span class="gl ${S.gate ? '' : 'on'}">${T('Tekan dan tahan tombol pemicu (gate)', 'Press and hold the trigger (gate)')}</span><span class="gl ${S.gate ? 'on' : ''}">${T('Gate dipicu… lepaskan kapan saja', 'Gate triggered… let go any time')}</span>`;
+}
+function render() { $('#simSvg').innerHTML = circuit(); if (S.mode === 'ac') $('#waveSvg').innerHTML = wave(); status(); }
+let last = 0;
+function loop(t) {
+  if (S.mode === 'ac') {
+    const dt = last ? Math.min(60, t - last) : 0;
+    S.phase += dt * 0.0038; // ≈ 0,6 gelombang per detik (diperlambat)
+    logic();
+    const v = Math.sin(S.phase);
+    S.hist.push({ v, l: S.on ? Math.max(0, v) : 0 }); if (S.hist.length > 200) S.hist.shift();
+    render();
+  }
+  last = t; requestAnimationFrame(loop);
+}
+
+/* ===== simulator sudut penyalaan (Rashid pers. 11.1; beban resistif, thyristor ideal) ===== */
+(function () {
+  let Vs = 12, a = 60;
+  const sl = $('#aSl'), nb = $('#aNum');
+  const setA = (v, from) => { a = Math.max(0, Math.min(180, Math.round(+v || 0))); if (from !== 'sl') sl.value = a; if (from !== 'nb') nb.value = a; if (from !== 'pre') setPre(''); draw(); };
+  seg($('#fVs'), '12', v => { Vs = +v; draw(); });
+  const setPre = seg($('#aPre'), '', v => setA(v, 'pre'));
+  sl.addEventListener('input', () => setA(sl.value, 'sl'));
+  nb.addEventListener('change', () => setA(nb.value));
+  $('#aMinus').onclick = () => setA(a - 1); $('#aPlus').onclick = () => setA(a + 1);
+  function draw() {
+    const Vm = Vs * Math.SQRT2, r = a * Math.PI / 180, k = Math.max(0, Math.PI - r + Math.sin(2 * r) / 2);
+    const vdc = Math.max(0, Vm / (2 * Math.PI) * (1 + Math.cos(r))), vrms = Vm * Math.sqrt(k / (4 * Math.PI)), pf = k / Math.PI;
+    const dec = x => LANG === 'en' ? x : x.replace('.', ',');
+    const v2 = x => dec(x.toFixed(x >= 100 ? 1 : 2));
+    $('#fA').textContent = a + '°';
+    $('#fCond').textContent = (180 - a) + '°';
+    $('#fVdc').textContent = v2(vdc) + ' V';
+    $('#fVrms').textContent = v2(vrms) + ' V';
+    $('#fPct').textContent = dec((pf * 100).toFixed(1)) + '%';
+    $('#fBar').style.width = (pf * 100).toFixed(2) + '%';
+    $('#fBulb').setAttribute('opacity', (0.06 + 0.94 * pf).toFixed(3));
+    $('#fGlow').setAttribute('opacity', (0.5 * pf).toFixed(3));
+    $('#fSrc').innerHTML = T(`Sumber ${Vs} V AC → V<sub>m</sub> = √2 × ${Vs} = ${dec(Vm.toFixed(2))} V. Beban resistif, thyristor ideal. Pada α = 0°: V<sub>dc</sub> = V<sub>m</sub>/π = ${dec((Vm / Math.PI).toFixed(2))} V dan V<sub>rms</sub> = V<sub>m</sub>/2 = ${dec((Vm / 2).toFixed(2))} V. Rumus: Rashid, <i>Power Electronics Handbook</i>, pers. 11.1.`,
+      `${Vs} V AC source → V<sub>m</sub> = √2 × ${Vs} = ${Vm.toFixed(2)} V. Resistive load, ideal thyristor. At α = 0°: V<sub>dc</sub> = V<sub>m</sub>/π = ${(Vm / Math.PI).toFixed(2)} V and V<sub>rms</sub> = V<sub>m</sub>/2 = ${(Vm / 2).toFixed(2)} V. Formula: Rashid, <i>Power Electronics Handbook</i>, Eq. 11.1.`);
+    $('#fNote').textContent = a === 0 ? T('α = 0°: thyristor dipicu di awal gelombang; lampu menerima setengah gelombang penuh, sama seperti dioda.', 'α = 0°: fired at the start of the wave; the lamp gets the full half-wave, same as a diode.')
+      : a === 180 ? T('α = 180°: pemicu datang tepat saat gelombang berakhir, jadi tidak ada arus ke lampu.', 'α = 180°: the trigger arrives exactly as the wave ends, so no current reaches the lamp.')
+      : a <= 90 ? T('Sudut 0°–90° masih bisa dicapai dengan pemicu resistor sederhana.', 'Angles of 0°–90° can be reached with a simple resistor trigger.')
+      : T('Di atas 90°, pemicu resistor saja tidak cukup karena arus gate mengikuti tegangan sumber yang sudah turun. Perlu pemicu pulsa atau rangkaian RC (lihat Simulasi 3).', 'Beyond 90° a resistor-only trigger is not enough, because gate current follows a supply voltage that is already falling. A pulse or RC trigger is needed (see Simulator 3).');
+    // gelombang satu periode 0–360°
+    const W = 520, H = 300, ml = 56, mr = 16, top = 30, bot = 246, mid = (top + bot) / 2, A = (bot - top) / 2 - 6, pw = W - ml - mr;
+    const X = d => ml + d / 360 * pw, Y = v => mid - v / Vm * A;
+    let g = '';
+    for (let d = 0; d <= 360; d += 30) g += `<line x1="${X(d)}" y1="${top}" x2="${X(d)}" y2="${bot}" stroke="${d % 180 === 0 ? '#e7e5e4' : '#f5f5f4'}"/><text x="${X(d)}" y="${bot + 16}" text-anchor="middle" font-size="10.5" fill="#a8a29e" font-family="Geist Mono, monospace">${d}°</text>`;
+    [[Vm, '+V<tspan font-size="8" dy="2">m</tspan>'], [0, '0'], [-Vm, '−V<tspan font-size="8" dy="2">m</tspan>']].forEach(([v, l]) => g += `<line x1="${ml}" y1="${Y(v)}" x2="${W - mr}" y2="${Y(v)}" stroke="${v === 0 ? '#a8a29e' : '#f5f5f4'}"/><text x="${ml - 8}" y="${Y(v) + 4}" text-anchor="end" font-size="10.5" fill="#a8a29e">${l}</text>`);
+    let src = '';
+    for (let d = 0; d <= 360; d += 1) src += (d ? 'L' : 'M') + X(d).toFixed(2) + ' ' + Y(Vm * Math.sin(d * Math.PI / 180)).toFixed(2);
+    if (a < 180) {
+      let p = `M${X(a).toFixed(2)} ${Y(0)}`;
+      for (let d = a; d <= 180; d += 0.5) p += `L${X(d).toFixed(2)} ${Y(Vm * Math.sin(d * Math.PI / 180)).toFixed(2)}`;
+      g += `<path d="${p}L${X(180)} ${Y(0)}Z" fill="rgba(194,65,12,.16)" stroke="#c2410c" stroke-width="2.4" stroke-linejoin="round"/>`;
+    }
+    g += `<path d="${src}" fill="none" stroke="#a8a29e" stroke-width="1.6" stroke-dasharray="5 4"/>`;
+    if (a > 0) g += `<path d="M${X(0)} ${top - 10} H${X(a)}" stroke="#1c1917" stroke-width="1.2"/><path d="M${X(0)} ${top - 14} v8 M${X(a)} ${top - 14} v8" stroke="#1c1917" stroke-width="1.2"/><text x="${X(a / 2)}" y="${top - 15}" text-anchor="middle" font-size="11" font-weight="600" fill="#1c1917">α = ${a}°</text>`;
+    if (a < 180) g += `<path d="M${X(a)} ${bot + 26} H${X(180)}" stroke="#c2410c" stroke-width="1.2"/><path d="M${X(a)} ${bot + 22} v8 M${X(180)} ${bot + 22} v8" stroke="#c2410c" stroke-width="1.2"/><text x="${X((a + 180) / 2)}" y="${bot + 42}" text-anchor="middle" font-size="11" font-weight="600" fill="#c2410c">${T('konduksi', 'conduction')} ${180 - a}°</text>`;
+    if (a <= 180) g += `<line x1="${X(a)}" y1="${top}" x2="${X(a)}" y2="${bot}" stroke="#c2410c" stroke-width="1.6" stroke-dasharray="3 3"/><circle cx="${X(a)}" cy="${Y(0)}" r="4.5" fill="#c2410c"/>`;
+    g += `<g font-size="10.5" fill="#57534e"><line x1="${W - 196}" y1="12" x2="${W - 178}" y2="12" stroke="#a8a29e" stroke-dasharray="5 4" stroke-width="1.6"/><text x="${W - 172}" y="16">${T('sumber AC', 'AC supply')}</text><rect x="${W - 96}" y="6" width="16" height="11" fill="rgba(194,65,12,.16)" stroke="#c2410c"/><text x="${W - 74}" y="16">${T('ke lampu', 'to lamp')}</text></g>`;
+    $('#fWave').innerHTML = g;
+  }
+  draw(); redraw.push(draw);
+})();
+
+/* ===== simulator pemicu RC (persamaan rangkaian, 1500 langkah per siklus) ===== */
+(function () {
+  const Vth = 1.45, IGT = 0.2e-3, IGMAX = 0.05, N = 1500;
+  const CREC = { 12: '1', 24: '0.47', 48: '0.22', 120: '0.1', 230: '0.047' };
+  let Vs = 12, f = 50, Cs = '1', mode = 'rc', pos = 45, Vm, w, C, dt, RMIN, RMAX = {}, curves = {};
+  function run(m, R, keep) {
+    let vc = 0, on = false, alpha = null, A = keep ? { va: [], vc: [], vl: [] } : null;
+    for (let cyc = 0; cyc < 6; cyc++) {
+      let fc = null; const last = cyc === 5;
+      for (let i = 0; i < N; i++) {
+        const th = 2 * Math.PI * i / N, va = Vm * Math.sin(th);
+        if (va <= 0) on = false;
+        if (m === 'rc') {
+          if (va < vc) vc = va; else vc += (va - vc) * dt / (R * C);
+          if (!on && va > 0 && vc >= Vth && (va - vc) / R >= IGT) { on = true; fc = th; }
+          if (on && vc > Vth) vc = Vth;
+        } else {
+          vc = Math.max(0, Math.min(va - R * IGT, Vth));
+          if (!on && va > 0 && va - R * IGT >= Vth) { on = true; fc = th; }
+        }
+        if (last && keep && i % 3 === 0) { A.va.push(va); A.vc.push(vc); A.vl.push(on ? va : 0); }
+      }
+      if (last) alpha = fc;
+    }
+    return { alpha: alpha === null ? null : alpha * 180 / Math.PI, A };
+  }
+  function setup() {
+    Vm = Vs * Math.SQRT2; w = 2 * Math.PI * f; C = +Cs * 1e-6; dt = 1 / f / N;
+    RMIN = Math.max(300, Vm / IGMAX);
+    // R terbesar yang masih memicu (cari biner), lalu sedikit dilebihkan agar batas "tidak menyala" terlihat
+    let lo = RMIN, hi = 60 / (w * C);
+    if (run('rc', hi, false).alpha === null) { for (let k = 0; k < 16; k++) { const mid = Math.sqrt(lo * hi); if (run('rc', mid, false).alpha === null) hi = mid; else lo = mid; } }
+    RMAX.rc = Math.max(RMIN * 1.5, hi * 1.04);
+    RMAX.r = Math.max(RMIN * 1.5, (Vm - Vth) / IGT * 1.04);
+    ['rc', 'r'].forEach(m => { curves[m] = []; for (let p = 0; p <= 100; p += 4) curves[m].push([p, run(m, Rof(m, p), false).alpha]); });
+  }
+  const Rof = (m, p) => RMIN + (RMAX[m] - RMIN) * p / 100;
+  const fmtR = R => R >= 1e6 ? dec((R / 1e6).toFixed(2)) + ' MΩ' : dec((R / 1e3).toFixed(R < 1e4 ? 2 : 1)) + ' kΩ';
+  const sl = $('#capSl');
+  const setC = seg($('#cC'), Cs, v => { Cs = v; setup(); draw(); });
+  seg($('#cVs'), '12', v => { Vs = +v; Cs = CREC[Vs]; setC(Cs); setup(); draw(); });
+  seg($('#cF'), '50', v => { f = +v; setup(); draw(); });
+  seg($('#capMode'), mode, v => { mode = v; $('#cCRow').hidden = v !== 'rc'; draw(); });
+  sl.addEventListener('input', () => { pos = +sl.value; draw(); });
+  const dec = x => LANG === 'en' ? x : x.replace('.', ',');
+  function sch() {
+    const rc = mode === 'rc';
+    let s = '';
+    s += `<path class="wire" d="M50 92 V36 H120 M176 36 H226 M282 36 H392 V200 H50 V140"/>`;
+    s += `<circle cx="50" cy="116" r="24" fill="#fff" stroke="#292524" stroke-width="3"/><path d="M36 116 q7 -14 14 0 t14 0" fill="none" stroke="#292524" stroke-width="3"/>`;
+    s += `<text x="26" y="40" font-size="12" font-weight="600" fill="#57534e">a</text><text x="26" y="204" font-size="12" font-weight="600" fill="#57534e">b</text>`;
+    s += `<circle cx="148" cy="36" r="17" fill="#fff" stroke="#292524" stroke-width="3"/><path d="M136 24l24 24M160 24l-24 24" stroke="#292524" stroke-width="2.5"/><text x="148" y="70" text-anchor="middle" font-size="11" fill="#57534e">${T('lampu', 'lamp')}</text>`;
+    s += `<polygon points="282,22 282,50 310,36" fill="#c2410c"/><line x1="310" y1="20" x2="310" y2="52" stroke="#c2410c" stroke-width="4"/><line class="wire" x1="310" y1="36" x2="392" y2="36"/><line class="wire" x1="226" y1="36" x2="282" y2="36"/>`;
+    s += `<text x="296" y="16" text-anchor="middle" font-size="11" font-weight="600" fill="#c2410c">SCR</text>`;
+    // R dari titik anoda
+    s += `<circle cx="226" cy="36" r="4" fill="#292524"/><path class="wire" d="M226 36 V62"/>`;
+    s += `<rect x="216" y="62" width="20" height="44" rx="3" fill="#fff" stroke="#292524" stroke-width="2.5"/><path d="M206 104 L246 64" stroke="#c2410c" stroke-width="2"/><path d="M246 64 l-8 1 M246 64 l-1 8" stroke="#c2410c" stroke-width="2"/>`;
+    s += `<text x="202" y="88" text-anchor="end" font-size="12" font-weight="600" fill="#1c1917">R</text>`;
+    s += `<path class="wire" d="M226 106 V140"/><circle cx="226" cy="140" r="4" fill="#292524"/>`;
+    if (rc) {
+      // D2 sejajar R (anoda di sisi kapasitor)
+      s += `<path class="wire" d="M226 50 H262 V72 M262 96 V128 H226"/><polygon points="252,96 272,96 262,76" fill="#292524"/><line x1="252" y1="74" x2="272" y2="74" stroke="#292524" stroke-width="2.5"/><text x="278" y="90" font-size="11" fill="#57534e">D2</text>`;
+      s += `<path class="wire" d="M226 140 V160 M226 172 V200"/><line x1="210" y1="160" x2="242" y2="160" stroke="#c2410c" stroke-width="3.5"/><line x1="210" y1="172" x2="242" y2="172" stroke="#c2410c" stroke-width="3.5"/>`;
+      s += `<text x="200" y="171" text-anchor="end" font-size="12" font-weight="600" fill="#c2410c">C</text>`;
+    }
+    // D1 ke gate
+    s += `<path class="wire" d="M226 140 H316"/><polygon points="316,130 316,150 336,140" fill="#292524"/><line x1="336" y1="130" x2="336" y2="150" stroke="#292524" stroke-width="2.5"/><text x="326" y="164" text-anchor="middle" font-size="11" fill="#57534e">D1</text>`;
+    s += `<path d="M336 140 H352 V58 L310 44" stroke="#c2410c" stroke-width="2.5" fill="none" stroke-linejoin="round"/><text x="358" y="100" font-size="11" font-weight="600" fill="#c2410c">gate</text>`;
+    $('#capSch').innerHTML = s;
+  }
+  function draw() {
+    const R = Rof(mode, pos), r = run(mode, R, true), a = r.alpha, A = r.A;
+    $('#capRTxt').textContent = fmtR(R);
+    $('#capSrc').innerHTML = T(`Sumber ${Vs} V AC ${f} Hz (V<sub>m</sub> = ${dec(Vm.toFixed(1))} V)` + (mode === 'rc' ? `, C = ${dec(Cs)} µF` : '') + `. Potensiometer ${fmtR(RMIN)} – ${fmtR(RMAX[mode])}.`, `${Vs} V AC ${f} Hz source (V<sub>m</sub> = ${Vm.toFixed(1)} V)` + (mode === 'rc' ? `, C = ${Cs} µF` : '') + `. Potentiometer ${fmtR(RMIN)} – ${fmtR(RMAX[mode])}.`);
+    const rad = a === null ? Math.PI : a * Math.PI / 180;
+    const vdc = Vm / (2 * Math.PI) * (1 + Math.cos(rad)), pf = (Math.PI - rad + Math.sin(2 * rad) / 2) / Math.PI;
+    $('#capA').textContent = a === null ? T('tidak menyala', 'no firing') : Math.round(a) + '°';
+    $('#capP').textContent = Math.round(pf * 100) + '%';
+    $('#capV').textContent = dec(vdc.toFixed(2)) + ' V';
+    $('#capW').textContent = mode === 'rc' ? dec((w * R * C).toFixed(2)) : '–';
+    let n;
+    if (a === null) n = mode === 'rc' ? T('R terlalu besar: kapasitor terisi terlalu lambat dan arus gate tidak cukup sebelum gelombang berakhir, jadi thyristor tidak menyala sama sekali.', 'R too large: the capacitor charges too slowly and gate current is insufficient before the wave ends, so the thyristor never fires.')
+      : T('R terlalu besar: bahkan di puncak gelombang arus gate tidak mencapai I<sub>GT</sub>, jadi thyristor tidak menyala. Pemicu R saja tidak bisa menyala setelah 90°.', 'R too large: even at the wave peak the gate current does not reach I<sub>GT</sub>, so the thyristor never fires. An R-only trigger cannot fire after 90°.');
+    else if (mode === 'rc') n = a > 90 ? T('Kapasitor menunda pemicu melewati puncak gelombang. Sudut di atas 90° ini tidak mungkin dicapai tanpa kapasitor.', 'The capacitor delays the trigger past the wave peak. An angle above 90° like this is impossible without the capacitor.') : T('Kapasitor masih cepat terisi, jadi thyristor menyala cukup awal. Perbesar R untuk menunda.', 'The capacitor still charges quickly, so the thyristor fires fairly early. Increase R to delay it.');
+    else n = T('Tanpa kapasitor, pemicu mengikuti tegangan sumber secara langsung, sehingga sudut paling besar hanya mendekati 90°.', 'Without the capacitor the trigger follows the supply directly, so the largest angle is close to 90°.');
+    $('#capNote').innerHTML = n;
+    sch();
+    // gelombang 2 siklus
+    const W = 520, H = 240, ml = 40, mr = 12, pw = W - ml - mr, mid = 108, Ak = 80, n2 = A.va.length;
+    const X = k => ml + k / (2 * n2) * pw, Y = v => mid - v / Vm * Ak;
+    let src = '', vcp = '', lamp = '', inSeg = false, segStart = 0;
+    for (let c = 0; c < 2; c++) for (let k = 0; k < n2; k++) { const kk = c * n2 + k, x = X(kk).toFixed(1);
+      src += (kk ? 'L' : 'M') + x + ' ' + Y(A.va[k]).toFixed(1); vcp += (kk ? 'L' : 'M') + x + ' ' + Y(A.vc[k]).toFixed(1);
+      if (A.vl[k] > 0) { if (!inSeg) { lamp += `M${x} ${Y(0)}`; inSeg = true; } lamp += `L${x} ${Y(A.vl[k]).toFixed(1)}`; }
+      else if (inSeg) { lamp += `L${x} ${Y(0)}Z`; inSeg = false; } }
+    if (inSeg) lamp += `L${X(2 * n2 - 1)} ${Y(0)}Z`;
+    let g = `<line x1="${ml}" y1="${Y(0)}" x2="${W - mr}" y2="${Y(0)}" stroke="#e7e5e4"/>`;
+    g += `<line x1="${ml}" y1="${Y(Vth)}" x2="${W - mr}" y2="${Y(Vth)}" stroke="#57534e" stroke-dasharray="3 3" stroke-width="1"/><text x="${W - mr}" y="${Y(Vth) - 4}" text-anchor="end" font-size="10" fill="#57534e">${T('batas picu 1,45 V', 'trigger level 1.45 V')}</text>`;
+    if (lamp) g += `<path d="${lamp}" fill="rgba(194,65,12,.16)" stroke="#c2410c" stroke-width="2.2" stroke-linejoin="round"/>`;
+    g += `<path d="${src}" fill="none" stroke="#a8a29e" stroke-width="1.6" stroke-dasharray="5 4"/>`;
+    g += `<path d="${vcp}" fill="none" stroke="#1c1917" stroke-width="1.8"/>`;
+    if (a !== null) [0, 1].forEach(c => { const x = X(c * n2 + a / 360 * n2); g += `<line x1="${x}" y1="${Y(0) + 4}" x2="${x}" y2="${Y(0) + 30}" stroke="#c2410c" stroke-width="3" stroke-linecap="round"/>`; });
+    [0, 180, 360, 540, 720].forEach(d => g += `<text x="${X(d / 360 * n2)}" y="${H - 6}" text-anchor="middle" font-size="10.5" fill="#a8a29e">${d}°</text>`);
+    g += `<g font-size="10.5" fill="#57534e"><line x1="${ml + 4}" y1="${H - 30}" x2="${ml + 22}" y2="${H - 30}" stroke="#a8a29e" stroke-dasharray="5 4" stroke-width="1.6"/><text x="${ml + 26}" y="${H - 26}">${T('sumber', 'supply')}</text>
+      <line x1="${ml + 92}" y1="${H - 30}" x2="${ml + 110}" y2="${H - 30}" stroke="#1c1917" stroke-width="1.8"/><text x="${ml + 114}" y="${H - 26}">${mode === 'rc' ? T('tegangan kapasitor v_C', 'capacitor voltage v_C') : T('tegangan pemicu', 'trigger voltage')}</text>
+      <rect x="${ml + 270}" y="${H - 36}" width="16" height="11" fill="rgba(194,65,12,.16)" stroke="#c2410c"/><text x="${ml + 292}" y="${H - 26}">${T('ke lampu', 'to lamp')}</text></g>`;
+    $('#capWave').innerHTML = g;
+    // kurva α vs posisi
+    const cw = 360, ch = 190, cl = 40, cr = 12, ct = 14, cb = 34, cpw = cw - cl - cr, cph = ch - ct - cb;
+    const CX = p => cl + p / 100 * cpw, CY = d => ct + (1 - d / 180) * cph;
+    let k2 = `<rect x="${cl}" y="${ct}" width="${cpw}" height="${cph}" fill="none" stroke="#e7e5e4"/>`;
+    [0, 90, 180].forEach(d => k2 += `<line x1="${cl}" y1="${CY(d)}" x2="${cl + cpw}" y2="${CY(d)}" stroke="#f5f5f4"/><text x="${cl - 5}" y="${CY(d) + 4}" text-anchor="end" font-size="10" fill="#a8a29e">${d}°</text>`);
+    ['r', 'rc'].forEach(m => { let d = '', pen = false; curves[m].forEach(([p, al]) => { if (al === null) { pen = false; return; } d += (pen ? 'L' : 'M') + CX(p).toFixed(1) + ' ' + CY(al).toFixed(1); pen = true; });
+      k2 += `<path d="${d}" fill="none" stroke="${m === 'rc' ? '#c2410c' : '#a8a29e'}" stroke-width="${m === mode ? 2.6 : 1.6}"${m === 'r' ? ' stroke-dasharray="5 4"' : ''}/>`; });
+    if (a !== null) k2 += `<circle cx="${CX(pos)}" cy="${CY(a)}" r="5" fill="${mode === 'rc' ? '#c2410c' : '#57534e'}" stroke="#fff" stroke-width="2"/>`;
+    k2 += `<text x="${cl + cpw / 2}" y="${ch - 8}" text-anchor="middle" font-size="10.5" fill="#a8a29e">${T('posisi potensiometer (0–100%)', 'potentiometer position (0–100%)')}</text>`;
+    k2 += `<g font-size="10.5" fill="#57534e"><line x1="${cl + 8}" y1="${ct + 12}" x2="${cl + 24}" y2="${ct + 12}" stroke="#c2410c" stroke-width="2.4"/><text x="${cl + 28}" y="${ct + 16}">RC</text><line x1="${cl + 58}" y1="${ct + 12}" x2="${cl + 74}" y2="${ct + 12}" stroke="#a8a29e" stroke-dasharray="5 4" stroke-width="1.6"/><text x="${cl + 78}" y="${ct + 16}">${T('R saja', 'R only')}</text></g>`;
+    $('#capCurve').innerHTML = k2;
+  }
+  setup(); draw(); redraw.push(draw);
+})();
+
+redraw.push(render);
+setLang(LANG); render(); requestAnimationFrame(loop);
+</script>
+
+</body></html>
