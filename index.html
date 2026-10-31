@@ -1,3 +1,4 @@
+<!-- Silahkan belajar dengan menggunakan projek ini, hargai karya kami, jangan menghapus kredit di bagian bawah. Terima kasih. -->
 <!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
 <title>Konsep Thyristor</title>
 <meta name="claude:viewport-fit-sides" content="cover">
@@ -129,6 +130,56 @@ input[type=range]{width:100%;accent-color:var(--accent)}
 .f-foot{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;align-items:start}
 .f-formula{white-space:normal;line-height:1.9}
 @media (max-width:820px){.f-toolbar,.f-grid,.f-foot{grid-template-columns:minmax(0,1fr)}.f-right{justify-content:flex-start}}
+
+/* poles konsep utama */
+.three .card{gap:12px;padding:22px;transition:border-color .15s,box-shadow .15s}
+.three .card:hover{border-color:var(--accent-mid);box-shadow:0 4px 14px rgba(194,65,12,.08)}
+.three .card .top{display:flex;align-items:center;justify-content:space-between}
+.three .card .idx{font-family:var(--f-mono);font-size:.78rem;font-weight:500;color:var(--faint);letter-spacing:.06em}
+.three .card p{color:var(--muted);font-size:.95rem;line-height:1.65}
+.three .card p b{color:var(--accent);font-weight:600}
+/* rumus + keterangan sudut penyalaan */
+.f-foot{align-items:stretch}
+.info{border:1px solid var(--line);border-radius:10px;background:var(--surface);padding:14px 16px;display:flex;flex-direction:column;gap:10px;min-width:0}
+.info-h{font-family:var(--f-mono);font-size:.74rem;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.frow{display:grid;grid-template-columns:4.4em minmax(0,1fr);gap:2px 12px;align-items:baseline;padding-top:10px;border-top:1px solid var(--line)}
+.frow .fl{font-family:var(--f-mono);font-weight:600;color:var(--accent);font-size:.95rem}
+.frow .fx{font-family:var(--f-mono);font-size:.88rem;overflow-wrap:anywhere}
+.frow .fd{grid-column:2;font-size:.8rem;color:var(--muted)}
+.flegend{font-size:.82rem;color:var(--muted);border-top:1px solid var(--line);padding-top:10px;margin-top:auto}
+.flegend b{font-family:var(--f-mono);color:var(--ink);font-weight:600}
+#fNote{background:var(--accent-soft);border:1px solid var(--accent-line);border-radius:8px;padding:10px 12px;color:var(--ink);min-height:5.8em;font-size:.88rem}
+#fSrc,#pSrc,#rSrc{flex:1;font-size:.82rem;line-height:1.7;background:var(--subtle);border:1px solid var(--line);border-radius:8px;padding:10px 12px}
+/* toolbar simulasi 3 */
+.c-toolbar{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px 20px;padding:14px 16px;border:1px solid var(--line);border-radius:10px;background:var(--subtle)}
+.c-toolbar .ctl-row{flex-direction:column;align-items:flex-start;gap:6px;min-width:0}
+.c-toolbar .lab{min-width:0}
+.c-toolbar .pill{max-width:100%}
+@media (max-width:820px){.c-toolbar{grid-template-columns:minmax(0,1fr)}}
+
+/* isi ruang kosong simulasi interaktif & simulasi 2 */
+#coba .sim{align-items:stretch}
+#coba .sim>div:first-child{display:flex;flex-direction:column;gap:12px;min-width:0}
+#coba .sim>div:first-child>.stage:first-child{flex:1;display:flex;align-items:center;justify-content:center}
+#coba .sim>div:first-child>.stage:first-child svg{max-height:440px}
+#coba .controls>div:last-child{flex:1;border:1px solid var(--line);border-radius:10px;background:var(--subtle);padding:14px 16px}
+#fNote,#pNote,#rNote{flex:none;display:flex;align-items:center;min-height:7.2em;background:var(--accent-soft);border:1px solid var(--accent-line);border-radius:8px;padding:10px 12px;color:var(--ink);font-size:.88rem}
+
+/* materi lanjutan */
+.frow.w{grid-template-columns:6.4em minmax(0,1fr)}
+@media (max-width:560px){.frow,.frow.w{grid-template-columns:minmax(0,1fr)}.frow .fd{grid-column:1}}
+.swipe{display:none;font-size:.78rem;color:var(--muted);margin:-4px 2px 0;text-align:right}
+@media (max-width:700px){.swipe{display:block}}
+.cmpwrap{overflow-x:auto}
+.cmp{width:100%;border-collapse:collapse;font-size:.92rem}
+.cmp th,.cmp td{border-top:1px solid var(--line);padding:11px 12px;text-align:left;vertical-align:top}
+.cmp thead th{border-top:0;font-family:var(--f-mono);font-size:.76rem;font-weight:500;text-transform:uppercase;letter-spacing:.06em;color:var(--muted)}
+.cmp tbody th{font-weight:500;color:var(--muted);width:30%}
+.cmp td{font-family:var(--f-mono);font-size:.88rem}
+.cmp td .i-id,.cmp td .i-en{font-family:var(--f-body)}
+#rCap{min-height:1.4em}
+.stage:has(#pWave),.stage:has(#rWave){overflow-x:auto}
+#pWave,#rWave{min-width:640px}
 footer{max-width:1080px;margin:20px auto 0;padding:22px;font-size:.87rem;color:var(--muted);display:flex;flex-direction:column;gap:8px}
 footer b{color:var(--ink)}
 </style>
@@ -147,7 +198,7 @@ footer b{color:var(--ink)}
     <h1><span class="i-id">Konsep Thyristor</span><span class="i-en">Thyristor Concepts</span></h1>
     <p class="tagline"><span class="i-id">Saklar elektronik yang <b>mengunci sendiri</b> setelah dipicu.</span><span class="i-en">An electronic switch that <b>locks itself on</b> once triggered.</span></p>
     <p class="lead"><span class="i-id">Thyristor (SCR) adalah saklar tanpa bagian bergerak. Cukup “ditekan” sekali dengan sinyal kecil, ia langsung menyala dan tetap menyala selama arus utamanya masih mengalir. Komponen ini ada di pengatur kecepatan motor, pengisi aki, dan pengatur pemanas.</span><span class="i-en">A thyristor (SCR) is a switch with no moving parts. Give it one small nudge and it switches on, and stays on for as long as its main current keeps flowing. You will find it in motor speed controllers, battery chargers and heater controls.</span></p>
-    <div class="cta"><a class="btn dark" href="#coba"><span class="i-id">Coba simulasinya</span><span class="i-en">Try the simulator</span></a><a class="btn" href="#sudut"><span class="i-id">Atur sudut penyalaan</span><span class="i-en">Control the firing angle</span></a></div>
+    <div class="cta"><a class="btn dark" href="#coba"><span class="i-id">Coba simulasinya</span><span class="i-en">Try the simulator</span></a><a class="btn" href="#sudut"><span class="i-id">Atur sudut penyalaan</span><span class="i-en">Control the firing angle</span></a><a class="btn" href="#lanjut"><span class="i-id">PWM &amp; penyearah</span><span class="i-en">PWM &amp; rectifiers</span></a></div>
     <p class="byline"><span class="i-id">Oleh</span><span class="i-en">By</span> <b>Akhwan Aji Nugroho</b> · <span class="i-id">Teknik Elektro, Politeknik Negeri Semarang</span><span class="i-en">Electrical Engineering, Politeknik Negeri Semarang</span></p>
   </div>
   <div class="stage" aria-hidden="true">
@@ -160,11 +211,11 @@ footer b{color:var(--ink)}
   <div class="kicker"><span class="i-id">Konsep utama</span><span class="i-en">The big idea</span></div>
   <h2><span class="i-id">Tiga sifat yang membuat thyristor istimewa</span><span class="i-en">Three things that make a thyristor special</span></h2>
   <div class="three">
-    <div class="card"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 12h14M13 6l6 6-6 6"/></svg></div>
+    <div class="card"><div class="top"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 12h14M13 6l6 6-6 6"/></svg></div><span class="idx">01</span></div>
       <h3><span class="i-id">Hanya satu arah</span><span class="i-en">One way only</span></h3><p><span class="i-id">Seperti pintu putar di stasiun, arus listrik hanya boleh lewat dari satu sisi (anoda) ke sisi lain (katoda). Arah sebaliknya ditolak, selama tegangannya masih di bawah batas kemampuan komponen.</span><span class="i-en">Like a turnstile, current may only pass from one side (anode) to the other (cathode). The opposite direction is blocked, as long as the voltage stays within the part’s rating.</span></p></div>
-    <div class="card"><div class="ico amber"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3"/></svg></div>
+    <div class="card"><div class="top"><div class="ico amber"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3"/></svg></div><span class="idx">02</span></div>
       <h3><span class="i-id">Perlu dipicu</span><span class="i-en">Needs a trigger</span></h3><p><span class="i-id">Walau arahnya sudah benar, thyristor tetap diam sampai kaki ketiganya, <b>gate</b>, menerima sinyal kecil. Sinyal itulah “tombol nyala”-nya.</span><span class="i-en">Even with the right direction, it stays off until its third leg, the <b>gate</b>, receives a small signal. That signal is its “on button”.</span></p></div>
-    <div class="card"><div class="ico red"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg></div>
+    <div class="card"><div class="top"><div class="ico red"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg></div><span class="idx">03</span></div>
       <h3><span class="i-id">Mengunci</span><span class="i-en">Latches</span></h3><p><span class="i-id">Setelah menyala, sinyal gate boleh dilepas dan thyristor tetap menyala. Gate tidak bisa mematikannya.</span><span class="i-en">Once on, the gate signal can be removed and it stays on. The gate cannot switch it off.</span></p></div>
   </div>
 </section>
@@ -233,8 +284,18 @@ footer b{color:var(--ink)}
     <div class="ticks" aria-hidden="true"><span style="--p:0">0°</span><span style="--p:1">30°</span><span style="--p:2">60°</span><span style="--p:3">90°</span><span style="--p:4">120°</span><span style="--p:5">150°</span><span style="--p:6">180°</span></div>
   </div>
   <div class="f-foot">
-    <div class="formula f-formula">V<sub>dc</sub> = (V<sub>m</sub> / 2π) · (1 + cos α)<br>V<sub>rms</sub> = V<sub>m</sub> · √[(π − α + ½ sin 2α) / 4π]<br>P / P<sub>α=0</sub> = (π − α + ½ sin 2α) / π</div>
-    <div class="stack" style="gap:8px"><p class="note" id="fNote"></p><p class="note" id="fSrc"></p></div>
+    <div class="info">
+      <div class="info-h"><span class="i-id">Rumus</span><span class="i-en">Formulas</span></div>
+      <div class="frow"><span class="fl">V<sub>dc</sub></span><span class="fx">= (V<sub>m</sub> / 2π) · (1 + cos α)</span><span class="fd"><span class="i-id">Tegangan rata-rata ke lampu</span><span class="i-en">Average voltage to the lamp</span></span></div>
+      <div class="frow"><span class="fl">V<sub>rms</sub></span><span class="fx">= V<sub>m</sub> · √[(π − α + ½ sin 2α) / 4π]</span><span class="fd"><span class="i-id">Tegangan efektif ke lampu</span><span class="i-en">RMS voltage to the lamp</span></span></div>
+      <div class="frow"><span class="fl">P / P<sub>0</sub></span><span class="fx">= (π − α + ½ sin 2α) / π</span><span class="fd"><span class="i-id">Daya relatif terhadap α = 0°</span><span class="i-en">Power relative to α = 0°</span></span></div>
+      <div class="flegend"><b>V<sub>m</sub></b> <span class="i-id">= tegangan puncak sumber</span><span class="i-en">= peak supply voltage</span> · <b>α</b> <span class="i-id">= sudut penyalaan (dalam radian pada rumus)</span><span class="i-en">= firing angle (in radians in the formulas)</span></div>
+    </div>
+    <div class="info">
+      <div class="info-h"><span class="i-id">Keterangan</span><span class="i-en">Notes</span></div>
+      <p class="note" id="fNote"></p>
+      <p class="note" id="fSrc"></p>
+    </div>
   </div>
 </section>
 
@@ -243,11 +304,13 @@ footer b{color:var(--ink)}
   <div class="kicker"><span class="i-id">Simulasi 3 · Tambah kapasitor</span><span class="i-en">Simulator 3 · Add a capacitor</span></div>
   <h2><span class="i-id">Kapasitor membuat lampu bisa diredupkan hampir sampai padam</span><span class="i-en">A capacitor lets the lamp dim almost to off</span></h2>
   <p class="lead"><span class="i-id">Tanpa kapasitor, pemicu dari resistor hanya bisa menunda nyala thyristor sampai puncak gelombang (90°), jadi lampu paling redup masih mendapat separuh daya. Kapasitor bekerja seperti ember yang diisi lewat keran (potensiometer R): gate baru dipicu setelah ember cukup penuh. Makin kecil kerannya, makin lambat terisi, makin lambat thyristor menyala.</span><span class="i-en">Without a capacitor, a resistor trigger can only delay firing up to the wave’s peak (90°), so the dimmest setting still gets half the power. The capacitor acts like a bucket filled through a tap (potentiometer R): the gate fires only once the bucket is full enough. The smaller the tap, the slower it fills, the later the thyristor fires.</span></p>
-  <div class="ctl-row"><span class="lab"><span class="i-id">Rangkaian pemicu</span><span class="i-en">Trigger circuit</span></span>
-    <div class="pill" id="capMode"><button data-v="rc"><span class="i-id">Dengan kapasitor (RC)</span><span class="i-en">With capacitor (RC)</span></button><button data-v="r"><span class="i-id">Tanpa kapasitor (R saja)</span><span class="i-en">Without capacitor (R only)</span></button></div></div>
-  <div class="ctl-row"><span class="lab"><span class="i-id">Tegangan sumber</span><span class="i-en">Supply voltage</span></span><div class="pill" id="cVs"><button data-v="12">12 V</button><button data-v="24">24 V</button><button data-v="48">48 V</button><button data-v="120">120 V</button><button data-v="230">230 V</button></div>
-    <div class="pill" id="cF"><button data-v="50">50 Hz</button><button data-v="60">60 Hz</button></div></div>
-  <div class="ctl-row" id="cCRow"><span class="lab"><span class="i-id">Kapasitor C</span><span class="i-en">Capacitor C</span></span><div class="pill" id="cC"><button data-v="0.047">0,047 µF</button><button data-v="0.1">0,1 µF</button><button data-v="0.22">0,22 µF</button><button data-v="0.47">0,47 µF</button><button data-v="1">1 µF</button></div></div>
+  <div class="c-toolbar">
+    <div class="ctl-row"><span class="lab"><span class="i-id">Rangkaian pemicu</span><span class="i-en">Trigger circuit</span></span>
+      <div class="pill" id="capMode"><button data-v="rc"><span class="i-id">Dengan kapasitor</span><span class="i-en">With capacitor</span></button><button data-v="r"><span class="i-id">Tanpa kapasitor</span><span class="i-en">Without capacitor</span></button></div></div>
+    <div class="ctl-row" id="cCRow"><span class="lab"><span class="i-id">Kapasitor C</span><span class="i-en">Capacitor C</span></span><div class="pill" id="cC"><button data-v="0.047">0,047 µF</button><button data-v="0.1">0,1 µF</button><button data-v="0.22">0,22 µF</button><button data-v="0.47">0,47 µF</button><button data-v="1">1 µF</button></div></div>
+    <div class="ctl-row"><span class="lab"><span class="i-id">Tegangan sumber</span><span class="i-en">Supply voltage</span></span><div class="pill" id="cVs"><button data-v="12">12 V</button><button data-v="24">24 V</button><button data-v="48">48 V</button><button data-v="120">120 V</button><button data-v="230">230 V</button></div></div>
+    <div class="ctl-row"><span class="lab"><span class="i-id">Frekuensi</span><span class="i-en">Frequency</span></span><div class="pill" id="cF"><button data-v="50">50 Hz</button><button data-v="60">60 Hz</button></div></div>
+  </div>
   <div class="sim">
     <div style="display:flex;flex-direction:column;gap:12px;min-width:0">
       <div class="stage"><svg id="capSch" viewBox="0 0 440 230" role="img" aria-label="Rangkaian pemicu"></svg></div>
@@ -321,11 +384,150 @@ footer b{color:var(--ink)}
     <div class="card"><div class="ico red"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 20h12M8 16c0-3 3-4 3-8 2 2 5 4 5 8M8 16a4 4 0 0 0 8 0"/></svg></div><h3><span class="i-id">Pemanas industri</span><span class="i-en">Industrial heaters</span></h3><p class="note"><span class="i-id">Mengatur daya oven dan tungku tanpa kontak mekanis.</span><span class="i-en">Controlling oven and furnace power without mechanical contacts.</span></p></div>
   </div>
 </section>
+<!-- ===== MATERI LANJUTAN: PWM & PENYEARAH TERKENDALI ===== -->
+<section class="glass sec" id="lanjut">
+  <div class="kicker"><span class="i-id">Materi lanjutan · Pertemuan 5 &amp; 6</span><span class="i-en">Next topic · Lectures 5 &amp; 6</span></div>
+  <h2><span class="i-id">Dari satu thyristor ke penyearah terkendali dan sinyal PWM</span><span class="i-en">From one thyristor to controlled rectifiers and PWM signals</span></h2>
+  <p class="lead"><span class="i-id">Bagian sebelumnya menunjukkan satu thyristor yang dinyalakan pada sudut α. Di sini dua gagasan itu dikembangkan: bagaimana sinyal pemicu berupa denyut dengan lebar yang bisa diatur (PWM) dibentuk, dan bagaimana thyristor disusun menjadi penyearah terkendali 1 fasa, setengah gelombang dan gelombang penuh, dengan beban resistif maupun induktif.</span><span class="i-en">The earlier part showed a single thyristor fired at angle α. Here the ideas are extended: how a pulse train with adjustable width (PWM) is generated, and how thyristors form single-phase controlled rectifiers, half-wave and full-wave, with resistive and inductive loads.</span></p>
+  <div class="cta">
+    <a class="btn dark" href="#pwm"><span class="i-id">Sinyal PWM</span><span class="i-en">PWM signal</span></a>
+    <a class="btn" href="#penyearah"><span class="i-id">Penyearah terkendali 1 fasa</span><span class="i-en">Single-phase controlled rectifier</span></a>
+    <a class="btn" href="#banding"><span class="i-id">Perbandingan</span><span class="i-en">Comparison</span></a>
+  </div>
+</section>
+
+<!-- PWM -->
+<section class="glass sec" id="pwm">
+  <div class="kicker"><span class="i-id">Simulasi 4 · Pembentukan sinyal PWM</span><span class="i-en">Simulator 4 · PWM signal generation</span></div>
+  <h2><span class="i-id">Bandingkan dua sinyal, dapatkan denyut dengan lebar yang bisa diatur</span><span class="i-en">Compare two signals, get a pulse train with adjustable width</span></h2>
+  <p class="lead"><span class="i-id">PWM (<i>pulse width modulation</i>) dibentuk oleh sebuah pembanding (<i>comparator</i>). Sinyal referensi DC dibandingkan dengan sinyal carrier yang naik-turun berulang. Selama referensi lebih besar daripada carrier, keluaran bernilai 1 (on); selebihnya bernilai 0 (off). Makin tinggi referensi, makin lama keluaran on, dan itulah yang disebut <i>duty cycle</i>.</span><span class="i-en">PWM (pulse width modulation) is formed by a comparator. A DC reference signal is compared with a carrier that repeatedly ramps up and down. While the reference is above the carrier the output is 1 (on); otherwise it is 0 (off). The higher the reference, the longer the output stays on, and that fraction is the duty cycle.</span></p>
+  <div class="c-toolbar">
+    <div class="ctl-row"><span class="lab"><span class="i-id">Cara membentuk</span><span class="i-en">Method</span></span>
+      <div class="pill" id="pMode"><button data-v="cmp"><span class="i-id">Komparator</span><span class="i-en">Comparator</span></button><button data-v="gate"><span class="i-id">Gating block</span><span class="i-en">Gating block</span></button></div></div>
+    <div class="ctl-row" id="pCarRow"><span class="lab"><span class="i-id">Bentuk carrier</span><span class="i-en">Carrier shape</span></span>
+      <div class="pill" id="pCar"><button data-v="tri"><span class="i-id">Segitiga</span><span class="i-en">Triangle</span></button><button data-v="saw"><span class="i-id">Gigi gergaji</span><span class="i-en">Sawtooth</span></button></div></div>
+    <div class="ctl-row"><span class="lab"><span class="i-id">Frekuensi carrier</span><span class="i-en">Carrier frequency</span></span>
+      <div class="pill" id="pF"><button data-v="50">50 Hz</button><button data-v="100">100 Hz</button></div></div>
+    <div class="ctl-row"><span class="lab"><span class="i-id">Contoh cepat</span><span class="i-en">Quick examples</span></span>
+      <div class="pill" id="pPre"></div></div>
+  </div>
+  <div class="f-grid">
+    <div class="stage"><svg id="pDia" viewBox="0 0 440 240" role="img" aria-label="Diagram pembentuk PWM"></svg></div>
+    <div class="f-panel">
+      <div class="f-lamp">
+        <div class="f-lamp-txt">
+          <div class="kicker" style="text-transform:none;letter-spacing:.02em"><span class="i-id">Duty cycle D</span><span class="i-en">Duty cycle D</span></div>
+          <div class="f-big" id="pD"></div>
+          <div class="meter" aria-hidden="true"><i id="pBar"></i></div>
+        </div>
+      </div>
+      <div class="kpis4">
+        <div class="kpi"><span class="v acc" id="pT"></span><span class="k"><span class="i-id">Periode T (1/f)</span><span class="i-en">Period T (1/f)</span></span></div>
+        <div class="kpi"><span class="v" id="pTon"></span><span class="k"><span class="i-id">Lama on T<sub>on</sub></span><span class="i-en">On time T<sub>on</sub></span></span></div>
+        <div class="kpi"><span class="v" id="pToff"></span><span class="k"><span class="i-id">Lama off T<sub>off</sub></span><span class="i-en">Off time T<sub>off</sub></span></span></div>
+        <div class="kpi"><span class="v" id="pPulse"></span><span class="k"><span class="i-id">Jumlah periode dalam 100 ms</span><span class="i-en">Periods in 100 ms</span></span></div>
+      </div>
+    </div>
+  </div>
+  <div class="stage"><svg id="pWave" viewBox="0 0 980 330" role="img" aria-label="Gelombang PWM"></svg></div>
+  <p class="swipe" aria-hidden="true"><span class="i-id">Geser grafik ke samping untuk melihat seluruhnya →</span><span class="i-en">Swipe the chart sideways to see all of it →</span></p>
+  <div class="f-slider">
+    <div class="ctl-row" style="justify-content:space-between">
+      <label for="pSl" class="lab" style="min-width:0"><span id="pLabCmp"><span class="i-id">Tegangan referensi V<sub>ref</sub> (carrier 0–15 V)</span><span class="i-en">Reference voltage V<sub>ref</sub> (carrier 0–15 V)</span></span><span id="pLabGate" hidden><span class="i-id">Titik sakelar off (dari 0° sampai 360°)</span><span class="i-en">Switch-off point (from 0° to 360°)</span></span></label>
+      <span id="pVal" style="font-family:var(--f-mono);font-weight:600"></span>
+    </div>
+    <input type="range" id="pSl" min="0" max="15" step="0.25" value="7.5">
+  </div>
+  <div class="f-foot">
+    <div class="info">
+      <div class="info-h"><span class="i-id">Rumus</span><span class="i-en">Formulas</span></div>
+      <div class="frow"><span class="fl">D</span><span class="fx">= T<sub>on</sub> / (T<sub>on</sub> + T<sub>off</sub>) × 100%</span><span class="fd"><span class="i-id">Duty cycle dari lama on dan off</span><span class="i-en">Duty cycle from the on and off times</span></span></div>
+      <div class="frow"><span class="fl">D</span><span class="fx">= T<sub>on</sub> / T<sub>total</sub> × 100%</span><span class="fd"><span class="i-id">T<sub>total</sub> = T<sub>on</sub> + T<sub>off</sub> = periode sinyal PWM</span><span class="i-en">T<sub>total</sub> = T<sub>on</sub> + T<sub>off</sub> = period of the PWM signal</span></span></div>
+      <div class="frow"><span class="fl">D</span><span class="fx">= V<sub>ref</sub> / V<sub>pp</sub> × 100%</span><span class="fd"><span class="i-id">Carrier linear 0 sampai V<sub>pp</sub>, 0 ≤ V<sub>ref</sub> ≤ V<sub>pp</sub></span><span class="i-en">Linear carrier from 0 to V<sub>pp</sub>, 0 ≤ V<sub>ref</sub> ≤ V<sub>pp</sub></span></span></div>
+      <div class="frow"><span class="fl">D</span><span class="fx">= θ<sub>off</sub> / 360° × 100%</span><span class="fd"><span class="i-id">Gating block: sakelar on di 0°, off di θ<sub>off</sub></span><span class="i-en">Gating block: switch on at 0°, off at θ<sub>off</sub></span></span></div>
+      <div class="flegend"><b>D</b> <span class="i-id">= duty cycle (%)</span><span class="i-en">= duty cycle (%)</span> · <b>T<sub>on</sub></b>, <b>T<sub>off</sub></b> <span class="i-id">dalam detik (s)</span><span class="i-en">in seconds (s)</span></div>
+    </div>
+    <div class="info">
+      <div class="info-h"><span class="i-id">Keterangan</span><span class="i-en">Notes</span></div>
+      <p class="note" id="pNote"></p>
+      <p class="note" id="pSrc"></p>
+    </div>
+  </div>
+</section>
+
+<!-- PENYEARAH TERKENDALI -->
+<section class="glass sec" id="penyearah">
+  <div class="kicker"><span class="i-id">Simulasi 5 · Penyearah terkendali 1 fasa</span><span class="i-en">Simulator 5 · Single-phase controlled rectifier</span></div>
+  <h2><span class="i-id">Atur sudut α, lihat tegangan dan arus pada beban</span><span class="i-en">Set the angle α, watch the load voltage and current</span></h2>
+  <p class="lead"><span class="i-id">Penyearah terkendali mengubah listrik AC menjadi DC yang besarnya bisa diatur lewat sudut penyalaan α. <b>Setengah gelombang</b> memakai satu thyristor, jadi hanya setengah dari setiap gelombang yang bisa disalurkan. <b>Gelombang penuh</b> (jembatan) memakai empat thyristor: S<sub>1</sub> dan S<sub>2</sub> bekerja saat sumber positif, S<sub>3</sub> dan S<sub>4</sub> saat sumber negatif. Pada beban induktif (RL), induktor menahan arus sehingga thyristor baru padam di sudut padam β, bukan di 180°.</span><span class="i-en">A controlled rectifier turns AC into DC whose level is set by the firing angle α. The <b>half-wave</b> circuit uses one thyristor, so only half of every wave can be delivered. The <b>full-wave</b> (bridge) circuit uses four: S<sub>1</sub> and S<sub>2</sub> work while the source is positive, S<sub>3</sub> and S<sub>4</sub> while it is negative. With an inductive (RL) load the inductor keeps the current flowing, so the thyristor turns off at the extinction angle β rather than at 180°.</span></p>
+  <div class="c-toolbar">
+    <div class="ctl-row"><span class="lab"><span class="i-id">Rangkaian</span><span class="i-en">Circuit</span></span>
+      <div class="pill" id="rTopo"><button data-v="hw"><span class="i-id">Setengah gelombang</span><span class="i-en">Half-wave</span></button><button data-v="fw"><span class="i-id">Gelombang penuh (jembatan)</span><span class="i-en">Full-wave (bridge)</span></button></div></div>
+    <div class="ctl-row"><span class="lab"><span class="i-id">Beban</span><span class="i-en">Load</span></span>
+      <div class="pill" id="rLoad"><button data-v="r"><span class="i-id">Resistif (R)</span><span class="i-en">Resistive (R)</span></button><button data-v="rl"><span class="i-id">Induktif (RL)</span><span class="i-en">Inductive (RL)</span></button></div></div>
+    <div class="ctl-row"><span class="lab"><span class="i-id">Tegangan sumber</span><span class="i-en">Supply voltage</span></span>
+      <div class="pill" id="rVs"><button data-v="12">12 V</button><button data-v="24">24 V</button><button data-v="48">48 V</button><button data-v="120">120 V</button><button data-v="230">230 V</button></div></div>
+    <div class="ctl-row" id="rRatioRow"><span class="lab"><span class="i-id">Rasio ωL / R</span><span class="i-en">Ratio ωL / R</span></span>
+      <div class="pill" id="rRatio"><button data-v="0.5"><span class="i-id">0,5</span><span class="i-en">0.5</span></button><button data-v="1">1</button><button data-v="2">2</button><button data-v="5">5</button></div></div>
+  </div>
+  <div class="f-grid">
+    <div class="stage" style="flex-direction:column;gap:6px;justify-content:center"><svg id="rSch" viewBox="0 0 420 250" role="img" aria-label="Rangkaian penyearah terkendali"></svg><p class="note" id="rCap" style="text-align:center;padding:0 8px 6px"></p></div>
+    <div class="kpis4" style="grid-template-columns:repeat(2,minmax(0,1fr))">
+      <div class="kpi"><span class="v acc" id="rA"></span><span class="k"><span class="i-id">Sudut penyalaan α</span><span class="i-en">Firing angle α</span></span></div>
+      <div class="kpi"><span class="v" id="rB"></span><span class="k"><span class="i-id">Sudut padam β</span><span class="i-en">Extinction angle β</span></span></div>
+      <div class="kpi"><span class="v" id="rVo"></span><span class="k"><span class="i-id">Tegangan rata-rata V<sub>o</sub></span><span class="i-en">Average voltage V<sub>o</sub></span></span></div>
+      <div class="kpi"><span class="v" id="rVr"></span><span class="k"><span class="i-id">Tegangan efektif V<sub>rms</sub></span><span class="i-en">RMS voltage V<sub>rms</sub></span></span></div>
+      <div class="kpi"><span class="v" id="rIo"></span><span class="k"><span class="i-id">Arus rata-rata I<sub>o</sub></span><span class="i-en">Average current I<sub>o</sub></span></span></div>
+      <div class="kpi"><span class="v" id="rIr"></span><span class="k"><span class="i-id">Arus efektif I<sub>rms</sub></span><span class="i-en">RMS current I<sub>rms</sub></span></span></div>
+      <div class="kpi"><span class="v" id="rCond"></span><span class="k"><span class="i-id">Sudut konduksi (β − α)</span><span class="i-en">Conduction angle (β − α)</span></span></div>
+      <div class="kpi"><span class="v" id="rMode" style="font-size:1.1rem;line-height:1.5"></span><span class="k"><span class="i-id">Sifat arus beban</span><span class="i-en">Load current type</span></span></div>
+    </div>
+  </div>
+  <div class="stage"><svg id="rWave" viewBox="0 0 980 350" role="img" aria-label="Gelombang tegangan dan arus beban"></svg></div>
+  <p class="swipe" aria-hidden="true"><span class="i-id">Geser grafik ke samping untuk melihat seluruhnya →</span><span class="i-en">Swipe the chart sideways to see all of it →</span></p>
+  <div class="f-slider">
+    <div class="ctl-row" style="justify-content:space-between">
+      <label for="rSl" class="lab" style="min-width:0"><span class="i-id">Sudut penyalaan α (langkah 1°)</span><span class="i-en">Firing angle α (1° steps)</span></label>
+      <div class="numbox"><span id="rANum" style="min-width:3.4em;text-align:right"></span><button class="btn" id="rPlay" style="margin-left:10px;font-family:var(--f-body)"></button></div>
+    </div>
+    <input type="range" id="rSl" min="0" max="180" step="1" value="60">
+    <div class="ticks" aria-hidden="true"><span style="--p:0">0°</span><span style="--p:1">30°</span><span style="--p:2">60°</span><span style="--p:3">90°</span><span style="--p:4">120°</span><span style="--p:5">150°</span><span style="--p:6">180°</span></div>
+  </div>
+  <div class="f-foot">
+    <div class="info">
+      <div class="info-h"><span class="i-id">Rumus</span><span class="i-en">Formulas</span></div>
+      <div id="rForm" style="display:flex;flex-direction:column;gap:10px"></div>
+      <div class="flegend" id="rLeg"></div>
+    </div>
+    <div class="info">
+      <div class="info-h"><span class="i-id">Keterangan</span><span class="i-en">Notes</span></div>
+      <p class="note" id="rNote"></p>
+      <p class="note" id="rSrc"></p>
+    </div>
+  </div>
+</section>
+
+<!-- PERBANDINGAN -->
+<section class="glass sec" id="banding">
+  <div class="kicker"><span class="i-id">Ringkasan</span><span class="i-en">Summary</span></div>
+  <h2><span class="i-id">Setengah gelombang atau gelombang penuh?</span><span class="i-en">Half-wave or full-wave?</span></h2>
+  <div class="cmpwrap"><table class="cmp">
+    <thead><tr><th></th><th><span class="i-id">Setengah gelombang</span><span class="i-en">Half-wave</span></th><th><span class="i-id">Gelombang penuh (jembatan)</span><span class="i-en">Full-wave (bridge)</span></th></tr></thead>
+    <tbody>
+      <tr><th><span class="i-id">Jumlah thyristor</span><span class="i-en">Number of thyristors</span></th><td>1</td><td>4 (S<sub>1</sub>–S<sub>4</sub>)</td></tr>
+      <tr><th><span class="i-id">Denyut keluaran per gelombang sumber</span><span class="i-en">Output pulses per source cycle</span></th><td>1</td><td>2</td></tr>
+      <tr><th><span class="i-id">Frekuensi riak tegangan keluaran</span><span class="i-en">Output ripple frequency</span></th><td>f</td><td>2f</td></tr>
+      <tr><th>V<sub>o</sub>, <span class="i-id">beban R</span><span class="i-en">R load</span></th><td>V<sub>m</sub>/(2π) · (1 + cos α)</td><td>V<sub>m</sub>/π · (1 + cos α)</td></tr>
+      <tr><th>V<sub>o</sub>, <span class="i-id">beban R, α = 0°</span><span class="i-en">R load, α = 0°</span></th><td>V<sub>m</sub>/π ≈ <span class="i-id">0,318</span><span class="i-en">0.318</span> V<sub>m</sub></td><td>2V<sub>m</sub>/π ≈ <span class="i-id">0,637</span><span class="i-en">0.637</span> V<sub>m</sub></td></tr>
+      <tr><th><span class="i-id">Arus beban RL</span><span class="i-en">RL load current</span></th><td><span class="i-id">Selalu putus-putus (diskontinu): satu thyristor, arus turun ke nol di β</span><span class="i-en">Always discontinuous: one thyristor, current falls to zero at β</span></td><td><span class="i-id">Kontinu bila α ≤ tan⁻¹(ωL/R), diskontinu bila α di atasnya</span><span class="i-en">Continuous if α ≤ tan⁻¹(ωL/R), discontinuous above it</span></td></tr>
+    </tbody>
+  </table></div>
+</section>
 </main>
 
 <footer class="glass">
   <div><b>Akhwan Aji Nugroho</b> · <span class="i-id">Jurusan Teknik Elektro, Politeknik Negeri Semarang</span><span class="i-en">Department of Electrical Engineering, Politeknik Negeri Semarang</span></div>
-  <div><span class="i-id">Berdasarkan Praktikum VII Karakteristik Thyristor, Elektronika Daya. Rujukan: M. H. Rashid (ed.), <i>Power Electronics Handbook</i>, Bab 3; datasheet SCR 2N4441–2N4444.</span><span class="i-en">Based on Experiment VII, Thyristor Characteristics, Power Electronics lab. References: M. H. Rashid (ed.), <i>Power Electronics Handbook</i>, Ch. 3; 2N4441–2N4444 SCR datasheet.</span></div>
+  <div><span class="i-id">Berdasarkan Praktikum VII Karakteristik Thyristor, Elektronika Daya. Rujukan: M. H. Rashid (ed.), <i>Power Electronics Handbook</i>, Bab 3; datasheet SCR 2N4441–2N4444. Materi PWM dan penyearah terkendali: bahan kuliah Elektronika Daya Pertemuan 5 &amp; 6 (Byan Bagas Pradana, S.T., M.T.).</span><span class="i-en">Based on Experiment VII, Thyristor Characteristics, Power Electronics lab. References: M. H. Rashid (ed.), <i>Power Electronics Handbook</i>, Ch. 3; 2N4441–2N4444 SCR datasheet. PWM and controlled-rectifier material: Power Electronics lecture slides, meetings 5 &amp; 6 (Byan Bagas Pradana, S.T., M.T.).</span></div>
   <div class="note"><span class="i-id">Simulasi disederhanakan untuk tujuan belajar.</span><span class="i-en">The simulator is simplified for learning purposes.</span></div>
 </footer>
 
@@ -383,12 +585,12 @@ seg($('#langSeg'), LANG, setLang);
     const p = reduce ? 9 : ((t - t0) / 1000) % 6; // 0..6 s
     const lab = [T('Arah benar', 'Right direction'), T('Gate dipicu', 'Gate triggered'), T('Arus cukup', 'Enough current')];
     let s = '';
-    lab.forEach((l, i) => { const lit = p > 0.6 + i * 0.9; const x = 8 + i * 92;
-      s += `<rect x="${x}" y="22" width="86" height="40" rx="8" fill="${lit ? '#fff7ed' : '#fff'}" stroke="${lit ? '#c2410c' : '#e7e5e4'}" stroke-width="1.5"/>`;
-      s += `<circle cx="${x + 14}" cy="42" r="6" fill="${lit ? '#c2410c' : '#e7e5e4'}"/><text x="${x + 25}" y="46" font-size="10.5" font-weight="600" fill="${lit ? '#1c1917' : '#a8a29e'}">${l}</text>`; });
+    lab.forEach((l, i) => { const lit = p > 0.6 + i * 0.9; const x = 4 + i * 96, cx = x + 45;
+      s += `<rect x="${x}" y="8" width="90" height="54" rx="8" fill="${lit ? '#fff7ed' : '#fff'}" stroke="${lit ? '#c2410c' : '#e7e5e4'}" stroke-width="1.5"/>`;
+      s += `<circle cx="${cx}" cy="25" r="6" fill="${lit ? '#c2410c' : '#e7e5e4'}"/><text x="${cx}" y="49" text-anchor="middle" font-size="9.5" font-weight="600" fill="${lit ? '#1c1917' : '#a8a29e'}">${l}</text>`; });
     const all = p > 3.3;
-    s += `<path d="M286 42 H300" stroke="#a8a29e" stroke-width="2"/><circle cx="326" cy="42" r="${all ? 26 : 0}" fill="#fdba74" fill-opacity=".45"/><circle cx="326" cy="42" r="15" fill="${all ? '#ffedd5' : '#fff'}" stroke="#292524" stroke-width="2.5"/><path d="M316 32l20 20M336 32l-20 20" stroke="#292524" stroke-width="2"/>`;
-    s += `<text x="8" y="84" font-size="10.5" fill="#57534e">${all ? T('Ketiga syarat terpenuhi: thyristor menyala dan terkunci.', 'All three met: the thyristor is on and latched.') : T('Menunggu semua syarat terpenuhi…', 'Waiting for all three conditions…')}</text>`;
+    s += `<path d="M290 35 H310" stroke="#a8a29e" stroke-width="2"/><circle cx="334" cy="35" r="${all ? 26 : 0}" fill="#fdba74" fill-opacity=".45"/><circle cx="334" cy="35" r="15" fill="${all ? '#ffedd5' : '#fff'}" stroke="#292524" stroke-width="2.5"/><path d="M324 25l20 20M344 25l-20 20" stroke="#292524" stroke-width="2"/>`;
+    s += `<text x="8" y="86" font-size="10.5" fill="#57534e">${all ? T('Ketiga syarat terpenuhi: thyristor menyala dan terkunci.', 'All three met: the thyristor is on and latched.') : T('Menunggu semua syarat terpenuhi…', 'Waiting for all three conditions…')}</text>`;
     $('#miniOn').innerHTML = s;
   }
   function off(t) {
@@ -702,14 +904,370 @@ function loop(t) {
       k2 += `<path d="${d}" fill="none" stroke="${m === 'rc' ? '#c2410c' : '#a8a29e'}" stroke-width="${m === mode ? 2.6 : 1.6}"${m === 'r' ? ' stroke-dasharray="5 4"' : ''}/>`; });
     if (a !== null) k2 += `<circle cx="${CX(pos)}" cy="${CY(a)}" r="5" fill="${mode === 'rc' ? '#c2410c' : '#57534e'}" stroke="#fff" stroke-width="2"/>`;
     k2 += `<text x="${cl + cpw / 2}" y="${ch - 8}" text-anchor="middle" font-size="10.5" fill="#a8a29e">${T('posisi potensiometer (0–100%)', 'potentiometer position (0–100%)')}</text>`;
-    k2 += `<g font-size="10.5" fill="#57534e"><line x1="${cl + 8}" y1="${ct + 12}" x2="${cl + 24}" y2="${ct + 12}" stroke="#c2410c" stroke-width="2.4"/><text x="${cl + 28}" y="${ct + 16}">RC</text><line x1="${cl + 58}" y1="${ct + 12}" x2="${cl + 74}" y2="${ct + 12}" stroke="#a8a29e" stroke-dasharray="5 4" stroke-width="1.6"/><text x="${cl + 78}" y="${ct + 16}">${T('R saja', 'R only')}</text></g>`;
+    k2 += `<g font-size="10.5" fill="#57534e"><line x1="${cl + 8}" y1="${ct + 12}" x2="${cl + 24}" y2="${ct + 12}" stroke="#c2410c" stroke-width="2.4"/><text x="${cl + 28}" y="${ct + 16}">${T('Dengan C', 'With C')}</text><line x1="${cl + 98}" y1="${ct + 12}" x2="${cl + 114}" y2="${ct + 12}" stroke="#a8a29e" stroke-dasharray="5 4" stroke-width="1.6"/><text x="${cl + 118}" y="${ct + 16}">${T('Tanpa C', 'Without C')}</text></g>`;
     $('#capCurve').innerHTML = k2;
   }
   setup(); draw(); redraw.push(draw);
 })();
 
+/* ===== Simulasi 4: pembentukan sinyal PWM ===== */
+(function () {
+  const VPP = 15, WIN = 100;
+  let mode = 'cmp', car = 'tri', f = 50, ref = 7.5, off = 180;
+  const dec = x => LANG === 'en' ? x : x.replace('.', ',');
+  const n = (x, d = 1) => dec(x.toFixed(d));
+  const sl = $('#pSl');
+  function duty() { return mode === 'cmp' ? Math.max(0, Math.min(1, ref / VPP)) : Math.max(0, Math.min(1, off / 360)); }
+  /* denyut keluaran: kembalikan daftar interval high dalam ms */
+  function highs() {
+    const d = duty(), TT = 1000 / f, out = [];
+    if (d <= 0) return out;
+    if (d >= 1) return [[0, WIN]];
+    const tri = mode === 'cmp' && car === 'tri';
+    const K = Math.ceil(WIN / TT) + 1;
+    for (let k = 0; k < K; k++) {
+      const t0 = k * TT;
+      if (tri) { out.push([t0 - d * TT / 2, t0 + d * TT / 2]); }
+      else out.push([t0, t0 + d * TT]);
+    }
+    const m = [];
+    out.map(([a, b]) => [Math.max(0, a), Math.min(WIN, b)]).filter(([a, b]) => b > a).forEach(iv => {
+      const L = m[m.length - 1]; if (L && iv[0] <= L[1] + 1e-9) L[1] = Math.max(L[1], iv[1]); else m.push(iv.slice());
+    });
+    return m;
+  }
+  function presets() {
+    const P = mode === 'cmp' ? [[3.75, '3,75 V'], [7.5, '7,5 V'], [11.25, '11,25 V'], [12.5, '12,5 V']] : [[90, '90°'], [180, '180°'], [270, '270°']];
+    const cur = mode === 'cmp' ? ref : off;
+    $('#pPre').innerHTML = P.map(([v, l]) => `<button data-v="${v}" aria-pressed="${Math.abs(v - cur) < 1e-9}">${LANG === 'en' ? l.replace(',', '.') : l}</button>`).join('');
+  }
+  $('#pPre').addEventListener('click', e => { const b = e.target.closest('button'); if (!b) return; set(+b.dataset.v); });
+  function set(v) { if (mode === 'cmp') ref = v; else off = v; sl.value = v; draw(); }
+  seg($('#pMode'), 'cmp', v => {
+    mode = v; const c = v === 'cmp';
+    sl.min = 0; sl.max = c ? 15 : 360; sl.step = c ? 0.25 : 5; sl.value = c ? ref : off;
+    $('#pCarRow').hidden = !c; $('#pLabCmp').hidden = !c; $('#pLabGate').hidden = c; draw();
+  });
+  seg($('#pCar'), 'tri', v => { car = v; draw(); });
+  seg($('#pF'), '50', v => { f = +v; draw(); });
+  sl.addEventListener('input', () => { if (mode === 'cmp') ref = +sl.value; else off = +sl.value; draw(); });
+
+  function dia() {
+    const c = mode === 'cmp';
+    let s = '';
+    if (c) {
+      s += `<path class="wire" d="M62 60 H150 M62 170 H150 M150 60 H170 M150 170 H170 M262 115 H340"/>`;
+      s += `<polygon points="170,40 170,190 262,115" fill="#fff" stroke="#292524" stroke-width="3" stroke-linejoin="round"/>`;
+      s += `<text x="180" y="70" font-size="20" font-weight="700" fill="#1c1917">+</text><text x="182" y="168" font-size="22" font-weight="700" fill="#1c1917">−</text>`;
+      s += `<circle cx="40" cy="60" r="22" fill="#fff" stroke="#c2410c" stroke-width="3"/><path d="M28 66 H52 M28 54 H52" stroke="#c2410c" stroke-width="2.5" stroke-linecap="round" opacity="0"/><text x="40" y="65" text-anchor="middle" font-size="12" font-weight="700" fill="#c2410c">DC</text>`;
+      s += `<text x="40" y="30" text-anchor="middle" font-size="11" font-weight="600" fill="#c2410c">${T('referensi', 'reference')}</text>`;
+      s += `<circle cx="40" cy="170" r="22" fill="#fff" stroke="#292524" stroke-width="3"/><path d="${car === 'tri' ? 'M24 178 L32 160 L40 178 L48 160 L56 178' : 'M24 178 L34 160 V178 L44 160 V178 L54 160'}" fill="none" stroke="#292524" stroke-width="2.2" stroke-linejoin="round"/>`;
+      s += `<text x="40" y="214" text-anchor="middle" font-size="11" font-weight="600" fill="#57534e">carrier</text>`;
+      s += `<text x="216" y="22" text-anchor="middle" font-size="12" font-weight="600" fill="#57534e">${T('komparator', 'comparator')}</text>`;
+      s += `<rect x="340" y="95" width="80" height="40" rx="8" fill="#fff7ed" stroke="#c2410c" stroke-width="2"/><text x="380" y="120" text-anchor="middle" font-size="14" font-weight="700" fill="#c2410c">PWM</text>`;
+      s += `<text x="300" y="158" text-anchor="middle" font-size="10.5" fill="#57534e">${T('keluaran 1 bila ref > carrier', 'output 1 if ref > carrier')}</text>`;
+    } else {
+      s += `<rect x="30" y="50" width="210" height="130" rx="12" fill="#fff" stroke="#292524" stroke-width="3"/>`;
+      s += `<text x="135" y="82" text-anchor="middle" font-size="13" font-weight="700" fill="#1c1917">Gating block</text>`;
+      s += `<text x="135" y="108" text-anchor="middle" font-size="11.5" fill="#57534e">${T('frekuensi', 'frequency')} = ${f} Hz</text>`;
+      s += `<text x="135" y="130" text-anchor="middle" font-size="11.5" fill="#57534e">${T('jumlah titik', 'no. of points')} = 2</text>`;
+      s += `<text x="135" y="154" text-anchor="middle" font-size="12" font-weight="700" fill="#c2410c">${T('titik sakelar', 'switching points')}: 0  ${Math.round(off)}</text>`;
+      s += `<path class="wire" d="M240 115 H340"/><rect x="340" y="95" width="80" height="40" rx="8" fill="#fff7ed" stroke="#c2410c" stroke-width="2"/><text x="380" y="120" text-anchor="middle" font-size="14" font-weight="700" fill="#c2410c">PWM</text>`;
+      s += `<text x="300" y="158" text-anchor="middle" font-size="10.5" fill="#57534e">${T('on di 0°, off di', 'on at 0°, off at')} ${Math.round(off)}°</text>`;
+    }
+    $('#pDia').innerHTML = s;
+  }
+  function wave() {
+    const W = 980, ml = 62, mr = 18, pw = W - ml - mr, X = t => ml + t / WIN * pw;
+    const c = mode === 'cmp', ymax = c ? VPP : 360;
+    const yT0 = 22, yT1 = 150, Y = v => yT1 - v / ymax * (yT1 - yT0);
+    const yP1 = 262, yP0 = 196, TT = 1000 / f;
+    let g = '';
+    for (let t = 0; t <= WIN; t += 20) g += `<line x1="${X(t)}" y1="${yT0 - 6}" x2="${X(t)}" y2="${yP1 + 6}" stroke="#f5f5f4"/><text x="${X(t)}" y="304" text-anchor="middle" font-size="11" fill="#a8a29e" font-family="Geist Mono, monospace">${t}</text>`;
+    g += `<text x="${X(WIN) }" y="322" text-anchor="end" font-size="11" fill="#a8a29e">${T('waktu (ms) →', 'time (ms) →')}</text>`;
+    g += `<line x1="${ml}" y1="${yT1}" x2="${W - mr}" y2="${yT1}" stroke="#d6d3d1"/><line x1="${ml}" y1="${yP1}" x2="${W - mr}" y2="${yP1}" stroke="#d6d3d1"/>`;
+    [[0, c ? '0 V' : '0°'], [ymax, c ? '15 V' : '360°']].forEach(([v, l]) => g += `<text x="${ml - 8}" y="${Y(v) + 4}" text-anchor="end" font-size="11" fill="#a8a29e">${l}</text>`);
+    // carrier
+    let cp = '';
+    const K = Math.ceil(WIN / TT) + 1, pts = [];
+    for (let k = 0; k < K; k++) {
+      const t0 = k * TT;
+      if (c && car === 'tri') pts.push([t0, 0], [t0 + TT / 2, ymax]); else pts.push([t0, 0], [t0 + TT, ymax]);
+    }
+    pts.push([K * TT, 0]);
+    const keep = pts.filter(([t]) => t <= WIN + 1e-9);
+    cp = keep.map(([t, v], i) => (i ? 'L' : 'M') + X(t).toFixed(1) + ' ' + Y(v).toFixed(1)).join('');
+    // potong carrier di batas WIN dengan interpolasi sederhana: abaikan sisa (WIN kelipatan periode)
+    g += `<path d="${cp}" fill="none" stroke="#7d8d96" stroke-width="2" stroke-linejoin="round"/>`;
+    const rv = c ? ref : off;
+    g += `<line x1="${ml}" y1="${Y(rv)}" x2="${W - mr}" y2="${Y(rv)}" stroke="#c2410c" stroke-width="2" stroke-dasharray="6 4"/>`;
+    g += `<text x="${W - mr - 4}" y="${Y(rv) - 7}" text-anchor="end" font-size="12" font-weight="600" fill="#c2410c" stroke="#fff" stroke-width="4" paint-order="stroke">${c ? T('referensi', 'reference') + ' = ' + dec(String(+ref.toFixed(2))) + ' V' : T('titik off', 'off point') + ' = ' + Math.round(off) + '°'}</text>`;
+    g += `<text x="${ml + 6}" y="${yT0 + 4}" font-size="12" font-weight="600" fill="#57534e" stroke="#fff" stroke-width="4" paint-order="stroke">${c ? (car === 'tri' ? T('sinyal carrier (segitiga)', 'carrier (triangle)') : T('sinyal carrier (gigi gergaji)', 'carrier (sawtooth)')) : T('sudut siklus 0°–360° (carrier gigi gergaji)', 'cycle angle 0°–360° (sawtooth)')}</text>`;
+    // PWM
+    const H = highs();
+    H.forEach(([a, b]) => g += `<rect x="${X(a)}" y="${yP0}" width="${Math.max(0, X(b) - X(a))}" height="${yP1 - yP0}" fill="rgba(194,65,12,.16)"/>`);
+    let lv = H.length && H[0][0] <= 1e-9 ? 1 : 0, pp = `M${X(0)} ${lv ? yP0 : yP1}`;
+    H.forEach(([a, b]) => { if (a > 1e-9) pp += `H${X(a)}V${yP0}`; if (b < WIN - 1e-9) pp += `H${X(b)}V${yP1}`; else pp += `H${X(b)}`; });
+    if (!H.length) pp += `H${X(WIN)}`; else if (H[H.length - 1][1] < WIN - 1e-9) pp += `H${X(WIN)}`;
+    g += `<path d="${pp}" fill="none" stroke="#c2410c" stroke-width="2.4" stroke-linejoin="round"/>`;
+    g += `<text x="${ml - 8}" y="${yP0 + 4}" text-anchor="end" font-size="11" fill="#a8a29e">1</text><text x="${ml - 8}" y="${yP1 + 4}" text-anchor="end" font-size="11" fill="#a8a29e">0</text>`;
+    g += `<text x="${ml + 6}" y="${yP0 - 8}" font-size="12" font-weight="700" fill="#c2410c">PWM</text>`;
+    // braket T
+    g += `<path d="M${X(0)} 276 H${X(TT)} M${X(0)} 270 v12 M${X(TT)} 270 v12" stroke="#1c1917" stroke-width="1.3"/><text x="${(X(0) + X(TT)) / 2}" y="292" text-anchor="middle" font-size="11.5" font-weight="600" fill="#1c1917">T = ${n(TT, 0)} ms</text>`;
+    $('#pWave').innerHTML = g;
+  }
+  function draw() {
+    const d = duty(), TT = 1000 / f;
+    if (!sl.matches(':active')) { /* nilai slider sinkron */ }
+    $('#pVal').textContent = mode === 'cmp' ? dec(String(+ref.toFixed(2))) + ' V' : Math.round(off) + '°';
+    $('#pD').textContent = n(d * 100, 1) + '%';
+    $('#pBar').style.width = (d * 100).toFixed(1) + '%';
+    $('#pT').textContent = n(TT, 0) + ' ms';
+    $('#pTon').textContent = n(d * TT, 2) + ' ms';
+    $('#pToff').textContent = n((1 - d) * TT, 2) + ' ms';
+    $('#pPulse').textContent = String(Math.round(WIN / TT));
+    $('#pNote').textContent = mode === 'cmp'
+      ? T(`Vref = ${n(ref, 2)} V dari Vpp = 15 V, sehingga D = ${n(ref, 2)} / 15 = ${n(d * 100, 1)}%. Pada carrier ${car === 'tri' ? 'segitiga' : 'gigi gergaji'} keluaran on selama referensi berada di atas carrier. Menaikkan frekuensi carrier hanya memperbanyak denyut (periode lebih pendek), duty cycle tidak berubah.`,
+        `Vref = ${n(ref, 2)} V of Vpp = 15 V, so D = ${n(ref, 2)} / 15 = ${n(d * 100, 1)}%. With a ${car === 'tri' ? 'triangle' : 'sawtooth'} carrier the output is on while the reference is above the carrier. Raising the carrier frequency only adds more pulses (shorter period); the duty cycle does not change.`)
+      : T(`Sakelar menyala di 0° dan dimatikan di ${Math.round(off)}° pada setiap siklus ${f} Hz, sehingga D = ${Math.round(off)}° / 360° = ${n(d * 100, 1)}%. Cara ini sama dengan membandingkan sudut siklus dengan titik off.`,
+        `The switch turns on at 0° and off at ${Math.round(off)}° in every ${f} Hz cycle, so D = ${Math.round(off)}° / 360° = ${n(d * 100, 1)}%. It is the same as comparing the cycle angle with the off point.`);
+    $('#pSrc').textContent = T('Gelombang ditampilkan selama 100 ms. Carrier komparator berjangkauan 0–15 V (Vpp = 15 V). Model disederhanakan: sumber dan komparator dianggap ideal.', 'The wave is shown for 100 ms. The comparator carrier spans 0–15 V (Vpp = 15 V). The model is simplified: source and comparator are ideal.');
+    presets(); dia(); wave();
+  }
+  draw(); redraw.push(draw);
+})();
+
+/* ===== Simulasi 5: penyearah terkendali 1 fasa ===== */
+(function () {
+  const R = 10, F = 50, W0 = 2 * Math.PI * F, D2R = Math.PI / 180, PI = Math.PI;
+  let topo = 'hw', load = 'r', Vs = 12, ratio = 2, a = 60, play = true, cur = 90, M = null, wk = {}, lastKey = '';
+  const dec = x => LANG === 'en' ? x : x.replace('.', ',');
+  const n = (x, d = 2) => dec(x.toFixed(d));
+  const sl = $('#rSl');
+  const mod = (x, m) => ((x % m) + m) % m;
+
+  /* model: arus dan sudut padam sesuai teori */
+  function model() {
+    const Vm = Vs * Math.SQRT2, al = a * D2R, T0 = topo === 'hw' ? 2 * PI : PI;
+    const o = { Vm, al, T0, R };
+    let iF, beta, mode;
+    if (load === 'r') {
+      iF = th => Vm * Math.sin(th) / R; beta = al >= PI ? al : PI; mode = 'r';
+    } else {
+      const phi = Math.atan(ratio), Z = R * Math.sqrt(1 + ratio * ratio), k = Vm / Z; o.phi = phi; o.Z = Z; o.L = ratio * R / W0;
+      const iDisc = th => k * (Math.sin(th - phi) - Math.sin(al - phi) * Math.exp(-(th - al) / ratio));
+      if (topo === 'fw' && al <= phi + 1e-9) {
+        const kk = Math.exp(-PI / ratio), s = k * Math.sin(al - phi), I0 = -s * (1 + kk) / (1 - kk);
+        iF = th => k * Math.sin(th - phi) + (I0 - s) * Math.exp(-(th - al) / ratio);
+        beta = al + PI; mode = 'cont'; o.I0 = I0;
+      } else {
+        iF = iDisc; mode = 'disc';
+        const lim = al + (topo === 'hw' ? 2 * PI : PI), st = 0.1 * D2R;
+        let th = al + st;
+        if (iF(th) <= 0 || al >= PI) beta = al;
+        else {
+          let prev = th;
+          while (th < lim && iF(th) > 0) { prev = th; th += st; }
+          if (th >= lim) beta = lim; else { let lo = prev, hi = th; for (let q = 0; q < 40; q++) { const mid = (lo + hi) / 2; if (iF(mid) > 0) lo = mid; else hi = mid; } beta = (lo + hi) / 2; }
+        }
+      }
+    }
+    o.iF = iF; o.beta = beta; o.mode = mode; o.width = beta - al;
+    // integrasi numerik pada [alpha, beta]
+    let sV = 0, sV2 = 0, sI = 0, sI2 = 0;
+    const N = Math.max(0, Math.ceil((beta - al) / (0.02 * D2R))), h = N ? (beta - al) / N : 0;
+    for (let q = 0; q < N; q++) {
+      const th = al + (q + 0.5) * h, v = Vm * Math.sin(th), i = iF(th);
+      sV += v * h; sV2 += v * v * h; sI += i * h; sI2 += i * i * h;
+    }
+    o.Vo = sV / T0; o.Vrms = Math.sqrt(sV2 / T0); o.Io = sI / T0; o.Irms = Math.sqrt(sI2 / T0);
+    if (load === 'r') { // rumus tertutup untuk beban resistif
+      if (topo === 'hw') { o.Vo = Vm / (2 * PI) * (1 + Math.cos(al)); o.Vrms = Vm / 2 * Math.sqrt(Math.max(0, 1 - al / PI + Math.sin(2 * al) / (2 * PI))); }
+      else { o.Vo = Vm / PI * (1 + Math.cos(al)); o.Vrms = Vm * Math.sqrt(Math.max(0, 0.5 - al / (2 * PI) + Math.sin(2 * al) / (4 * PI))); }
+      o.Io = o.Vo / R; o.Irms = o.Vrms / R;
+    }
+    return o;
+  }
+  /* keadaan pada sudut th (rad), kondisi tunak */
+  function at(th) {
+    const x = mod(th - M.al, M.T0), n0 = Math.floor((th - M.al) / M.T0);
+    const on = M.width > 1e-9 && x <= M.width;
+    const sg = topo === 'hw' ? 1 : (mod(n0, 2) === 0 ? 1 : -1);
+    return { on, sg, vo: on ? sg * M.Vm * Math.sin(th) : 0, io: on ? M.iF(M.al + x) : 0 };
+  }
+
+  /* --- skema rangkaian --- */
+  function thyV(x, y, on, lab) {
+    const c = on ? '#c2410c' : '#292524';
+    return `<polygon points="${x - 13},${y + 13} ${x + 13},${y + 13} ${x},${y - 11}" fill="${on ? '#ffedd5' : '#fff'}" stroke="${c}" stroke-width="2.5" stroke-linejoin="round"/><line x1="${x - 15}" y1="${y - 13}" x2="${x + 15}" y2="${y - 13}" stroke="${c}" stroke-width="3.5"/><path d="M${x + 7} ${y + 3} l14 7" stroke="${c}" stroke-width="2.2" fill="none"/><circle cx="${x + 24}" cy="${y + 11}" r="3.2" fill="#fff" stroke="${c}" stroke-width="2"/><text x="${x - 22}" y="${y + 4}" text-anchor="end" font-size="12" font-weight="700" fill="${on ? '#c2410c' : '#57534e'}">${lab}</text>`;
+  }
+  function thyH(x, y, on, lab) {
+    const c = on ? '#c2410c' : '#292524';
+    return `<polygon points="${x - 13},${y - 13} ${x - 13},${y + 13} ${x + 11},${y}" fill="${on ? '#ffedd5' : '#fff'}" stroke="${c}" stroke-width="2.5" stroke-linejoin="round"/><line x1="${x + 13}" y1="${y - 15}" x2="${x + 13}" y2="${y + 15}" stroke="${c}" stroke-width="3.5"/><path d="M${x + 5} ${y + 8} l8 14" stroke="${c}" stroke-width="2.2" fill="none"/><circle cx="${x + 15}" cy="${y + 26}" r="3.2" fill="#fff" stroke="${c}" stroke-width="2"/><text x="${x}" y="${y - 22}" text-anchor="middle" font-size="12" font-weight="700" fill="${on ? '#c2410c' : '#57534e'}">${lab}</text>`;
+  }
+  function loadSvg(x, rl) {
+    const ra = rl ? 62 : 90, rb = rl ? 112 : 160, h = rb - ra;
+    let s = `<rect x="${x - 13}" y="${ra}" width="26" height="${h}" fill="#fff"/>`;
+    let p = `M${x} ${ra}`;
+    for (let i = 0; i < 6; i++) p += ` L${x + (i % 2 ? 9 : -9)} ${(ra + (i + 0.5) * h / 6).toFixed(1)}`;
+    p += ` L${x} ${rb}`;
+    s += `<path d="${p}" fill="none" stroke="#292524" stroke-width="3" stroke-linejoin="round"/><text x="${x - 20}" y="${(ra + rb) / 2 + 4}" text-anchor="end" font-size="13" font-weight="700" fill="#57534e">R</text>`;
+    if (rl) {
+      const la = 135, lb = 195, hh = (lb - la) / 4;
+      s += `<rect x="${x - 6}" y="${la}" width="30" height="${lb - la}" fill="#fff"/><path d="M${x} ${la}${(`c 20 0 20 ${hh} 0 ${hh}`).repeat(4)}" fill="none" stroke="#292524" stroke-width="3"/><text x="${x - 20}" y="${(la + lb) / 2 + 4}" text-anchor="end" font-size="13" font-weight="700" fill="#57534e">L</text>`;
+    }
+    s += `<text x="${x + 46}" y="${(ra + (rl ? 195 : rb)) / 2 - 8}" font-size="12" font-weight="600" fill="#57534e">+</text><text x="${x + 42}" y="${(ra + (rl ? 195 : rb)) / 2 + 8}" font-size="12" font-weight="600" fill="#57534e">v<tspan font-size="9" dy="3">o</tspan></text><text x="${x + 46}" y="${(ra + (rl ? 195 : rb)) / 2 + 26}" font-size="12" font-weight="600" fill="#57534e">−</text>`;
+    return s;
+  }
+  function schematic(st) {
+    const rl = load === 'rl'; let s = '';
+    const src = `<circle cx="50" cy="125" r="22" fill="#fff" stroke="#292524" stroke-width="3"/><path d="M36 125 q7 -14 14 0 t14 0" fill="none" stroke="#292524" stroke-width="3"/><text x="22" y="129" text-anchor="end" font-size="12" font-weight="600" fill="#57534e">v<tspan font-size="9" dy="3">s</tspan></text>`;
+    if (topo === 'hw') {
+      s += `<path class="wire" d="M50 103 V35 H330 V215 H50 V147"/>`;
+      s += loadSvg(330, rl) + src + thyH(170, 35, st.on, 'SCR');
+      s += `<path class="flow ${st.on ? 'live' : ''}" d="M50 103 V35 H330 V215 H50 V147"/>`;
+    } else {
+      /* jembatan (tata letak sama dengan slide): sumber atas ke titik tengah kaki kiri, sumber bawah ke titik tengah kaki kanan (melompati kaki kiri) */
+      const srcF = `<circle cx="55" cy="127" r="22" fill="#fff" stroke="#292524" stroke-width="3"/><path d="M41 127 q7 -14 14 0 t14 0" fill="none" stroke="#292524" stroke-width="3"/><text x="27" y="131" text-anchor="end" font-size="12" font-weight="600" fill="#57534e">v<tspan font-size="9" dy="3">s</tspan></text>`;
+      s += `<path class="wire" d="M55 105 V60 H110 V110 H160 M55 149 V195 H110 V145 H148 q12 -16 24 0 H260 M160 30 V220 M260 30 V220 M160 30 H350 V220 H160"/>`;
+      s += loadSvg(350, rl);
+      s += `<circle cx="160" cy="110" r="4" fill="#292524"/><circle cx="260" cy="145" r="4" fill="#292524"/><circle cx="260" cy="30" r="3.5" fill="#292524"/><circle cx="260" cy="220" r="3.5" fill="#292524"/>`;
+      const p1 = st.on && st.sg > 0, p2 = st.on && st.sg < 0;
+      s += srcF + thyV(160, 70, p1, 'S<tspan font-size="9" dy="3">1</tspan>') + thyV(260, 70, p2, 'S<tspan font-size="9" dy="3">3</tspan>') + thyV(160, 180, p2, 'S<tspan font-size="9" dy="3">4</tspan>') + thyV(260, 180, p1, 'S<tspan font-size="9" dy="3">2</tspan>');
+      s += `<path class="flow ${p1 ? 'live' : ''}" d="M55 105 V60 H110 V110 H160 V30 H350 V220 H260 V145 H172 q-12 -16 -24 0 H110 V195 H55 V149"/>`;
+      s += `<path class="flow ${p2 ? 'live' : ''}" d="M55 149 V195 H110 V145 H148 q12 -16 24 0 H260 V30 H350 V220 H160 V110 H110 V60 H55 V105"/>`;
+    }
+    return s;
+  }
+  function caption(st) {
+    if (!st.on) return T('Tidak ada thyristor yang menghantar saat ini.', 'No thyristor is conducting right now.');
+    if (topo === 'hw') return T('Menghantar: SCR', 'Conducting: SCR');
+    return st.sg > 0 ? T('Menghantar: S1 dan S2', 'Conducting: S1 and S2') : T('Menghantar: S3 dan S4', 'Conducting: S3 and S4');
+  }
+
+  /* --- gelombang --- */
+  function buildWave() {
+    const W = 980, ml = 62, mr = 18, pw = W - ml - mr, X = d => ml + d / 720 * pw;
+    const yV0 = 108, AV = 78, yI1 = 318, yI0 = 232; // io: dasar yI1, puncak yI0
+    const Yv = v => yV0 - v / M.Vm * AV, Yi = i => yI1 - Math.max(0, i) / (M.Vm / R) * (yI1 - yI0);
+    let g = '';
+    for (let d = 0; d <= 720; d += 90) g += `<line x1="${X(d)}" y1="26" x2="${X(d)}" y2="${yI1}" stroke="${d % 180 === 0 ? '#e7e5e4' : '#f5f5f4'}"/><text x="${X(d)}" y="338" text-anchor="middle" font-size="11" fill="#a8a29e" font-family="Geist Mono, monospace">${d}°</text>`;
+    [[M.Vm, '+V<tspan font-size="8" dy="2">m</tspan>'], [0, '0'], [-M.Vm, '−V<tspan font-size="8" dy="2">m</tspan>']].forEach(([v, l]) => g += `<line x1="${ml}" y1="${Yv(v)}" x2="${W - mr}" y2="${Yv(v)}" stroke="${v === 0 ? '#a8a29e' : '#f5f5f4'}"/><text x="${ml - 8}" y="${Yv(v) + 4}" text-anchor="end" font-size="11" fill="#a8a29e">${l}</text>`);
+    g += `<line x1="${ml}" y1="${yI1}" x2="${W - mr}" y2="${yI1}" stroke="#a8a29e"/><text x="${ml - 8}" y="${yI1 + 4}" text-anchor="end" font-size="11" fill="#a8a29e">0</text><text x="${ml - 8}" y="${yI0 + 4}" text-anchor="end" font-size="11" fill="#a8a29e">V<tspan font-size="8" dy="2">m</tspan><tspan dy="-2">/R</tspan></text>`;
+    let vs = '', vo = `M${X(0)} ${Yv(0)}`, vl = '', io = `M${X(0)} ${yI1}`, il = '';
+    for (let q = 0; q <= 2880; q++) {
+      const d = q * 0.25, th = d * D2R, st = at(th), x = X(d).toFixed(2);
+      vs += (q ? 'L' : 'M') + x + ' ' + Yv(M.Vm * Math.sin(th)).toFixed(2);
+      vo += 'L' + x + ' ' + Yv(st.vo).toFixed(2);
+      vl += (q ? 'L' : 'M') + x + ' ' + Yv(st.vo).toFixed(2);
+      io += 'L' + x + ' ' + Yi(st.io).toFixed(2);
+      il += (q ? 'L' : 'M') + x + ' ' + Yi(st.io).toFixed(2);
+    }
+    vo += `L${X(720)} ${Yv(0)}Z`; io += `L${X(720)} ${yI1}Z`;
+    g += `<path d="${vo}" fill="rgba(194,65,12,.16)" stroke="none"/><path d="${vs}" fill="none" stroke="#a8a29e" stroke-width="1.5" stroke-dasharray="5 4"/><path d="${vl}" fill="none" stroke="#c2410c" stroke-width="2.4" stroke-linejoin="round"/>`;
+    g += `<path d="${io}" fill="rgba(28,25,23,.07)" stroke="none"/><path d="${il}" fill="none" stroke="#1c1917" stroke-width="2.2" stroke-linejoin="round"/>`;
+    // penanda α dan β
+    const al = a, step = topo === 'hw' ? 360 : 180, be = M.beta / D2R;
+    for (let k = 0; al + k * step <= 720 + 1e-9; k++) {
+      const d = al + k * step;
+      g += `<line x1="${X(d)}" y1="26" x2="${X(d)}" y2="${yI1}" stroke="#c2410c" stroke-width="1.2" stroke-dasharray="3 3" opacity="${k ? .45 : 1}"/>`;
+      if (k === 0) g += `<text x="${X(d) + 4}" y="40" font-size="12" font-weight="700" fill="#c2410c">α</text>`;
+    }
+    if (load === 'rl') for (let k = -1; be + k * step <= 720 + 1e-9; k++) {
+      const d = be + k * step; if (d < 0) continue;
+      g += `<line x1="${X(d)}" y1="26" x2="${X(d)}" y2="${yI1}" stroke="#57534e" stroke-width="1.2" stroke-dasharray="2 3" opacity="${k ? .45 : 1}"/>`;
+      if (k === 0 || (k === -1 && be + step > 720)) g += `<text x="${X(d) + 4}" y="40" font-size="12" font-weight="700" fill="#57534e">β</text>`;
+    }
+    g += `<text x="${ml + 6}" y="20" font-size="12" font-weight="600" fill="#57534e">vo = ${T('tegangan beban (oranye)', 'load voltage (orange)')} · vs = ${T('sumber (putus-putus)', 'source (dashed)')}</text>`;
+    g += `<text x="${ml + 6}" y="${yI0 - 8}" font-size="12" font-weight="600" fill="#1c1917">i<tspan font-size="9" dy="3">o</tspan><tspan dy="-3"> (${T('arus beban', 'load current')})</tspan></text>`;
+    g += `<g id="rCurG"><line id="rCur" x1="0" y1="22" x2="0" y2="${yI1}" stroke="#1c1917" stroke-width="1.6"/><circle id="rDot" cx="0" cy="${yV0}" r="5" fill="#c2410c" stroke="#fff" stroke-width="2"/></g>`;
+    wk = { X, Yv, W };
+    $('#rWave').innerHTML = g;
+  }
+  function cursor() {
+    const c = $('#rCur'), d = $('#rDot'); if (!c) return;
+    const th = cur * D2R, st = at(th), x = wk.X(cur);
+    c.setAttribute('x1', x); c.setAttribute('x2', x); d.setAttribute('cx', x); d.setAttribute('cy', wk.Yv(st.vo));
+    const key = [topo, load, st.on, st.sg, LANG].join();
+    if (key !== lastKey) { lastKey = key; $('#rSch').innerHTML = schematic(st); $('#rCap').textContent = caption(st); }
+  }
+
+  /* --- teks, rumus, KPI --- */
+  const sub = (b, s) => `${b}<sub>${s}</sub>`;
+  function row(l, x, d) { return `<div class="frow w"><span class="fl">${l}</span><span class="fx">${x}</span><span class="fd">${d}</span></div>`; }
+  function formulas() {
+    const Vm = sub('V', 'm'), rl = load === 'rl', hw = topo === 'hw';
+    let h = '';
+    if (!rl) {
+      if (hw) {
+        h += row(sub('V', 'o'), `= (${Vm} / 2π) · (1 + cos α)`, T('Tegangan rata-rata, beban R', 'Average voltage, R load'));
+        h += row(sub('V', 'rms'), `= (${Vm} / 2) · √[1 − α/π + sin 2α / 2π]`, T('Tegangan efektif', 'RMS voltage'));
+      } else {
+        h += row(sub('V', 'o'), `= (${Vm} / π) · (1 + cos α)`, T('Tegangan rata-rata, beban R', 'Average voltage, R load'));
+        h += row(sub('V', 'rms'), `= ${Vm} · √[½ − α/2π + sin 2α / 4π]`, T('Tegangan efektif', 'RMS voltage'));
+        h += row(sub('I', 'o'), `= V<sub>o</sub> / R = (${Vm} / πR) · (1 + cos α)`, T('Arus rata-rata', 'Average current'));
+        h += row(sub('I', 'rms'), `= (${Vm} / R) · √[½ − α/2π + sin 2α / 4π]`, T('Arus efektif', 'RMS current'));
+      }
+      if (hw) h += row(sub('I', 'o'), `= V<sub>o</sub> / R,  I<sub>rms</sub> = V<sub>rms</sub> / R`, T('Arus mengikuti tegangan (beban R)', 'Current follows voltage (R load)'));
+    } else {
+      if (hw) {
+        h += row(sub('V', 'o'), `= (${Vm} / 2π) · (cos α − cos β)`, T('Tegangan rata-rata, beban RL', 'Average voltage, RL load'));
+        h += row(sub('I', 'o'), `= (1/2π) ∫<sub>α</sub><sup>β</sup> i<sub>o</sub> d(ωt)`, T('Arus rata-rata', 'Average current'));
+        h += row(sub('I', 'rms'), `= √[(1/2π) ∫<sub>α</sub><sup>β</sup> i<sub>o</sub><sup>2</sup> d(ωt)]`, T('Arus efektif', 'RMS current'));
+      } else {
+        h += row(sub('V', 'o'), `= (${Vm} / π) · (cos α − cos β)`, T('β = π (R), β < α+π (diskontinu), β = α+π (kontinu: V<sub>o</sub> = 2V<sub>m</sub> cos α / π)', 'β = π (R), β < α+π (discontinuous), β = α+π (continuous: V<sub>o</sub> = 2V<sub>m</sub> cos α / π)'));
+        h += row(sub('I', 'o'), `= (1/π) ∫<sub>α</sub><sup>β</sup> i<sub>o</sub> d(ωt)`, T('Arus rata-rata', 'Average current'));
+        h += row(sub('I', 'rms'), `= √[(1/π) ∫<sub>α</sub><sup>β</sup> i<sub>o</sub><sup>2</sup> d(ωt)]`, T('Arus efektif', 'RMS current'));
+      }
+      if (M.mode === 'cont') h += row('i<sub>o</sub>(ωt)', `= (${Vm} / Z) · sin(ωt − θ) + [I<sub>α</sub> − (${Vm} / Z) · sin(α − θ)] · e<sup>−(ωt − α)/ωτ</sup>`, T(`untuk α ≤ ωt ≤ α + π (arus kontinu). I<sub>α</sub> = arus saat thyristor berikutnya dipicu = ${n(M.I0, 3)} A, sama di setiap awal denyut (tunak)`, `for α ≤ ωt ≤ α + π (continuous current). I<sub>α</sub> = current when the next pair is fired = ${n(M.I0, 3)} A, the same at the start of every pulse (steady state)`));
+      else h += row('i<sub>o</sub>(ωt)', `= (${Vm} / Z) · [sin(ωt − θ) − sin(α − θ) · e<sup>−(ωt − α)/ωτ</sup>]`, T('untuk α ≤ ωt ≤ β (arus diskontinu, mulai dari nol di α)', 'for α ≤ ωt ≤ β (discontinuous current, starting from zero at α)'));
+      h += row('Z, θ, τ', `Z = √[R<sup>2</sup> + (ωL)<sup>2</sup>],  θ = tan<sup>−1</sup>(ωL/R),  τ = L/R`, T('Impedansi, sudut beban, konstanta waktu', 'Impedance, load angle, time constant'));
+      if (!hw) h += row(T('Syarat', 'Condition'), `α ≤ tan<sup>−1</sup>(ωL/R) = θ`, T('Arus kontinu bila terpenuhi; bila tidak, β < α + π (diskontinu)', 'Current is continuous if met; otherwise β < α + π (discontinuous)'));
+    }
+    $('#rForm').innerHTML = h;
+    $('#rLeg').innerHTML = `<b>${Vm}</b> ${T('= tegangan puncak sumber', '= peak supply voltage')} · <b>α</b> ${T('= sudut penyalaan', '= firing angle')} · <b>β</b> ${T('= sudut padam', '= extinction angle')} · <b>ωt</b> ${T('= sudut sumber', '= source angle')}`;
+  }
+  function render() {
+    M = model();
+    const rl = load === 'rl', hw = topo === 'hw', deg = x => n(x / D2R, M.mode === 'r' ? 0 : 1) + '°';
+    $('#rRatioRow').hidden = !rl;
+    $('#rANum').textContent = a + '°';
+    $('#rA').textContent = a + '°';
+    $('#rB').textContent = deg(M.beta);
+    $('#rVo').textContent = n(M.Vo) + ' V';
+    $('#rVr').textContent = n(M.Vrms) + ' V';
+    $('#rIo').textContent = n(M.Io) + ' A';
+    $('#rIr').textContent = n(M.Irms) + ' A';
+    $('#rCond').textContent = deg(M.width);
+    $('#rMode').textContent = M.width < 1e-6 ? T('Tidak ada arus', 'No current') : M.mode === 'r' ? T('Mengikuti vo', 'Follows vo') : M.mode === 'cont' ? T('Kontinu', 'Continuous') : T('Diskontinu', 'Discontinuous');
+    let note;
+    if (M.mode === 'r') note = hw ? T('Beban resistif: arus mengikuti tegangan, jadi thyristor padam tepat di β = 180°. Hanya setengah gelombang positif yang disalurkan, mulai dari α.', 'Resistive load: current follows the voltage, so the thyristor turns off exactly at β = 180°. Only the positive half-wave is delivered, starting at α.')
+      : T('Beban resistif: setiap pasang thyristor menghantar dari α sampai 180°. Setengah gelombang negatif dibalik oleh pasangan S3–S4, sehingga ada dua denyut per siklus sumber.', 'Resistive load: each thyristor pair conducts from α to 180°. The negative half-wave is flipped by pair S3–S4, giving two pulses per source cycle.');
+    else if (hw) note = T(`Induktor menahan arus agar tidak turun seketika. Arus tetap mengalir setelah vs berbalik arah dan baru nol di β = ${n(M.beta / D2R, 1)}° (lebih dari 180°). Selama itu vo = vs bernilai negatif, sehingga Vo lebih kecil daripada beban R.`, `The inductor keeps the current from dropping instantly. It keeps flowing after vs reverses and reaches zero only at β = ${n(M.beta / D2R, 1)}° (beyond 180°). Meanwhile vo = vs is negative, so Vo is lower than with an R load.`);
+    else if (M.mode === 'cont') note = T(`α = ${a}° ≤ θ = ${n(M.phi / D2R, 1)}°: arus tidak pernah sampai nol. Pasangan thyristor bergantian tepat saat pasangan lain dipicu (β = α + 180°), dan Vo = 2Vm cos α / π.`, `α = ${a}° ≤ θ = ${n(M.phi / D2R, 1)}°: the current never reaches zero. The thyristor pairs hand over exactly as the other pair is triggered (β = α + 180°), and Vo = 2Vm cos α / π.`);
+    else note = T(`α = ${a}° > θ = ${n(M.phi / D2R, 1)}°: arus sempat nol sebelum pasangan berikutnya dipicu (β = ${n(M.beta / D2R, 1)}° < α + 180° = ${a + 180}°), sehingga arus diskontinu dan vo = 0 di antara dua denyut.`, `α = ${a}° > θ = ${n(M.phi / D2R, 1)}°: the current reaches zero before the next pair is triggered (β = ${n(M.beta / D2R, 1)}° < α + 180° = ${a + 180}°), so the current is discontinuous and vo = 0 between pulses.`);
+    if (M.width < 1e-6) note = T('Pada α = 180° tegangan sumber sudah nol lalu berbalik negatif, jadi thyristor tidak bisa menyala: tidak ada tegangan maupun arus pada beban.', 'At α = 180° the source voltage is already zero and then reverses, so the thyristor cannot turn on: there is no load voltage or current.');
+    $('#rNote').textContent = note;
+    const base = T(`Sumber ${Vs} V, 50 Hz (Vm = ${n(M.Vm)} V), R = ${R} Ω`, `${Vs} V, 50 Hz source (Vm = ${n(M.Vm)} V), R = ${R} Ω`);
+    $('#rSrc').textContent = base + (rl ? T(`, ωL/R = ${dec(String(ratio))} → L = ${n(M.L * 1000, 1)} mH, θ = ${n(M.phi / D2R, 1)}°, Z = ${n(M.Z)} Ω`, `, ωL/R = ${ratio} → L = ${n(M.L * 1000, 1)} mH, θ = ${n(M.phi / D2R, 1)}°, Z = ${n(M.Z)} Ω`) : '') + T('. Thyristor dianggap ideal (tanpa jatuh tegangan) dan kondisi sudah tunak. Rumus: slide kuliah Pertemuan 5 & 6; Rashid, Power Electronics Handbook.', '. Thyristors are ideal (no voltage drop) and the circuit is in steady state. Formulas: lecture slides 5 & 6; Rashid, Power Electronics Handbook.');
+    $('#rPlay').textContent = play ? T('Jeda animasi', 'Pause animation') : T('Putar animasi', 'Play animation');
+    formulas(); buildWave(); lastKey = ''; cursor();
+  }
+  seg($('#rTopo'), 'hw', v => { topo = v; render(); });
+  seg($('#rLoad'), 'r', v => { load = v; render(); });
+  seg($('#rVs'), '12', v => { Vs = +v; render(); });
+  seg($('#rRatio'), '2', v => { ratio = +v; render(); });
+  sl.addEventListener('input', () => { a = +sl.value; render(); });
+  $('#rPlay').addEventListener('click', () => { play = !play; $('#rPlay').textContent = play ? T('Jeda animasi', 'Pause animation') : T('Putar animasi', 'Play animation'); });
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches; if (reduce) { play = false; cur = a + 30; }
+  let lt = 0;
+  function tick(t) { if (play) { const dt = lt ? Math.min(60, t - lt) : 0; cur = mod(cur + dt * 0.1, 720); cursor(); } lt = t; requestAnimationFrame(tick); }
+  render(); requestAnimationFrame(tick); redraw.push(render);
+})();
+
 redraw.push(render);
 setLang(LANG); render(); requestAnimationFrame(loop);
 </script>
+
 
 </body></html>
